@@ -2,26 +2,163 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --yblue: 216 75% 75%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 11%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+
+    color-scheme: dark;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply dark bg-muted text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.image-container {
+  background-image: linear-gradient(
+      90deg,
+      #14181d 0,
+      rgba(20, 24, 29, 0.986) 0.97%,
+      rgba(20, 24, 29, 0.945) 2.07833333%,
+      rgba(20, 24, 29, 0.883) 3.29666667%,
+      rgba(20, 24, 29, 0.803) 4.60166667%,
+      rgba(20, 24, 29, 0.711) 5.96666667%,
+      rgba(20, 24, 29, 0.61) 7.365%,
+      rgba(20, 24, 29, 0.504) 8.77166667%,
+      rgba(20, 24, 29, 0.398) 10.16%,
+      rgba(20, 24, 29, 0.296) 11.505%,
+      rgba(20, 24, 29, 0.203) 12.78%,
+      rgba(20, 24, 29, 0.122) 13.95833333%,
+      rgba(20, 24, 29, 0.059) 15.01666667%,
+      rgba(20, 24, 29, 0.016) 15.92833333%,
+      rgba(20, 24, 29, 0) 16.66666667%,
+      rgba(20, 24, 29, 0) 83.33333333%,
+      rgba(20, 24, 29, 0.016) 84.07166667%,
+      rgba(20, 24, 29, 0.059) 84.98333333%,
+      rgba(20, 24, 29, 0.122) 86.04166667%,
+      rgba(20, 24, 29, 0.203) 87.22%,
+      rgba(20, 24, 29, 0.296) 88.495%,
+      rgba(20, 24, 29, 0.398) 89.84%,
+      rgba(20, 24, 29, 0.504) 91.22833333%,
+      rgba(20, 24, 29, 0.61) 92.635%,
+      rgba(20, 24, 29, 0.711) 94.03333333%,
+      rgba(20, 24, 29, 0.803) 95.39833333%,
+      rgba(20, 24, 29, 0.883) 96.70333333%,
+      rgba(20, 24, 29, 0.945) 97.92166667%,
+      rgba(20, 24, 29, 0.986) 99.03%,
+      #14181d
+    ),
+    linear-gradient(
+      0deg,
+      #14181d 0,
+      rgba(20, 24, 29, 0.986) 0.97%,
+      rgba(20, 24, 29, 0.945) 2.07833333%,
+      rgba(20, 24, 29, 0.883) 3.29666667%,
+      rgba(20, 24, 29, 0.803) 4.60166667%,
+      rgba(20, 24, 29, 0.711) 5.96666667%,
+      rgba(20, 24, 29, 0.61) 7.365%,
+      rgba(20, 24, 29, 0.504) 8.77166667%,
+      rgba(20, 24, 29, 0.398) 10.16%,
+      rgba(20, 24, 29, 0.296) 11.505%,
+      rgba(20, 24, 29, 0.203) 12.78%,
+      rgba(20, 24, 29, 0.122) 13.95833333%,
+      rgba(20, 24, 29, 0.059) 15.01666667%,
+      rgba(20, 24, 29, 0.016) 15.92833333%,
+      rgba(20, 24, 29, 0) 16.66666667%,
+      rgba(20, 24, 29, 0) 83.33333333%,
+      rgba(20, 24, 29, 0.016) 84.07166667%,
+      rgba(20, 24, 29, 0.059) 84.98333333%,
+      rgba(20, 24, 29, 0.122) 86.04166667%,
+      rgba(20, 24, 29, 0.203) 87.22%,
+      rgba(20, 24, 29, 0.296) 88.495%,
+      rgba(20, 24, 29, 0.398) 89.84%,
+      rgba(20, 24, 29, 0.504) 91.22833333%,
+      rgba(20, 24, 29, 0.61) 92.635%,
+      rgba(20, 24, 29, 0.711) 94.03333333%,
+      rgba(20, 24, 29, 0.803) 95.39833333%,
+      rgba(20, 24, 29, 0.883) 96.70333333%,
+      rgba(20, 24, 29, 0.945) 97.92166667%,
+      rgba(20, 24, 29, 0.986) 99.03%,
+      #14181d
+    );
+  background-repeat: no-repeat;
+  box-shadow: 50px 50px 50px 0 hsl(var(--muted)) inset,
+    -50px -50px 50px 0 hsl(var(--muted)) inset;
+  border-radius: 5px;
 }
