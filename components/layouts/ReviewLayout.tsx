@@ -1,6 +1,8 @@
 import CategoryCard from "../cards/CategoryCard";
 import Link from "next/link";
-import SearchComboBox from "../SearchComboBox";
+import ReviewSearch from "../search/ReviewSearch";
+import Shell from "../Shell";
+import TitleHeader from "../TitleHeader";
 
 const categories = [
   {
@@ -40,21 +42,13 @@ const categories = [
 
 const ReviewLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section className="container relative">
+    <Shell>
+      <TitleHeader title="Reviews" description="Reviews of Popular PC titles" />
       <div className="flex flex-col justify-center items-center gap-4 mt-28 mx-auto">
-        <div className="flex flex-wrap gap-4 justify-center items-center">
-          {categories.map((category, idx) => (
-            <>
-              <Link href={`/reviews/category/${category.title}`}>
-                <CategoryCard key={idx} {...category} />
-              </Link>
-            </>
-          ))}
-        </div>
-        <SearchComboBox />
+        <ReviewSearch />
       </div>
-      <div className="flex flex-col justify-center mt-10 gap-3">{children}</div>
-    </section>
+      <div className="flex flex-col justify-center gap-3">{children}</div>
+    </Shell>
   );
 };
 export default ReviewLayout;

@@ -48,11 +48,10 @@ const Sidebar = ({ children }: SideBarProps) => {
             ))}
           </div>
         </Box>
-        <Box className="overflow-y-auto h-full">
+        <Box className="h-full">
           <GameLibrary />
         </Box>
       </div>
-      <main className="flex-1 overflow-auto">{children}</main>
     </div>
   );
 };

@@ -43,6 +43,14 @@ export const Doc = defineDocumentType(() => ({
       type: "boolean",
       default: false,
     },
+    review_type: {
+      type: "string",
+      required: true,
+    },
+    image: {
+      type: "string",
+      required: true,
+    },
   },
   computedFields: {
     slug: {
