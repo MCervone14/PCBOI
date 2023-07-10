@@ -9,6 +9,10 @@ export default authMiddleware({
     "/games/:category",
     "/game/:slugId",
     "/reviews",
+    "/reviews/:slug",
+    "/reviews/category/:slug",
+    "/reviews/search/:slug",
+    "/reviews/tag/:slug",
   ],
 });
 

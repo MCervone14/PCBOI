@@ -7,8 +7,6 @@ import { allDocs } from "@/.contentlayer/generated";
 import ReviewCard from "@/components/cards/ReviewCard";
 import { gameCategories } from "@/config/games";
 import { Button } from "@/components/ui/button";
-import FeaturedCard from "@/components/cards/FeaturedCard";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import EmblaCarousel from "@/components/EmblaCarousel";

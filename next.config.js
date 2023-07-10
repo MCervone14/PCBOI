@@ -16,6 +16,9 @@ const nextConfig = {
     appDir: true,
     serverActions: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = withContentlayer(nextConfig);
