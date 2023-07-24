@@ -5,22 +5,22 @@ import Link from "next/link";
 const ReviewHomePageCard = (doc: any) => {
   return (
     <div
-      className={`flex justify-between w-[60vmin] h-[25em] my-[2rem] mx-auto border-[8px] transition relative overflow-hidden 
+      className={`flex justify-between w-[76vmin] h-[25em] my-[2rem] mx-auto border-[8px] transition relative overflow-hidden 
     border-blue-500 group ease-in-out duration-500`}
     >
       <div
         className={`relative flex w-full h-full py-4 px-[.75rem] ${doc.sidebar_color} z-100 transition group-hover:transform 
-    group-hover:translate-x-[-30vmin] group-hover:z-0 ease-in-out duration-500`}
+    group-hover:translate-x-[-50vmin] group-hover:z-0 ease-in-out duration-500`}
       >
         <div
           className="group-hover:border-none flex flex-col 
-        justify-between w-[15vmin] h-full pt-[.5rem] pr-0 pb-0 pl-[.5rem] border-l-[3px] transition border-l-blue-500 ease-in-out duration-500"
+        justify-between w-[15vmin] h-full pt-[.5rem] pr-0 pb-0 pl-[.5rem] transition  ease-in-out duration-500"
         >
-          <h1 className="animate delay-5 text-center z-20">{doc.title}</h1>
+          <h1 className="animate delay-5 text-left z-20">{doc.title}</h1>
           <p className="animate delay-5  mb-[2.5rem] z-20">{doc.review_type}</p>
         </div>
         <div
-          className={`group-hover:w-[40vmin] absolute top-0 right-0 w-[40vmin] h-[100%]
+          className={`group-hover:w-[30vmin] absolute top-0 right-0 w-[50vmin] h-[100%]
       bg-no-repeat z-10 group-hover:bg-left ease-in-out duration-500`}
         >
           <Image
@@ -32,8 +32,8 @@ const ReviewHomePageCard = (doc: any) => {
         </div>
       </div>
       <div
-        className="absolute top-0 right-0 w-[40vmin] h-full py-[3vmin] px-[4vmin] bg-white 
-    text-slate-500 [box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4)] overflow-y-scroll ease-in-out duration-500"
+        className="absolute top-0 right-0 w-[50vmin] h-full py-[3vmin] px-[4vmin] bg-white 
+    text-slate-500 [box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4)] overflow-hidden ease-in-out duration-500"
       >
         <p>
           Trees are woody perennial plants that are a member of the kingdom{" "}

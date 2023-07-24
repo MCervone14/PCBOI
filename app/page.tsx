@@ -120,7 +120,7 @@ export default async function Home() {
               <div className="mb-5 space-y-2">
                 <TitleHeader title="New Reviews" />
                 <Separator className="bg-primary" />
-                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-1">
                   {allDocs.map((doc, idx: number) => (
                     <ReviewHomePageCard {...doc} key={idx} />
                   ))}
