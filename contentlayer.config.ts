@@ -6,7 +6,7 @@ import rehypeSlug from "rehype-slug";
 
 export const Doc = defineDocumentType(() => ({
   name: "Doc",
-  filePathPattern: `reviews/**/*.mdx`,
+  filePathPattern: `review/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -48,6 +48,10 @@ export const Doc = defineDocumentType(() => ({
       required: true,
     },
     image: {
+      type: "string",
+      required: true,
+    },
+    sidebar_color: {
       type: "string",
       required: true,
     },

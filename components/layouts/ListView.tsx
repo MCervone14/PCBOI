@@ -11,34 +11,27 @@ import dayjs from "dayjs";
 import Link from "next/link";
 
 const ListView = ({ game }: any) => {
-  const steamId = game.external_games?.find(
-    (item: any) => item.category === 1
-  ).uid;
+  const steamId = game.external_games?.find((item: any) => item.category === 1);
+  const appId = steamId?.uid;
   const ratingFace = getRatingFace(game.total_rating?.toFixed(0));
   const releaseDate = dayjs
     .unix(game.first_release_date)
     .format("MMM DD, YYYY");
-
   return (
-    <HoverCard>
+    <HoverCard openDelay={400}>
       <HoverCardTrigger asChild className="flex relative h-[87px] w-[229px]">
-        <Link href={`/game/${steamId}`} prefetch={false}>
+        <Link href={`/game/${appId}`} prefetch={false}>
           <Image
-            src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${steamId}/capsule_231x87.jpg`}
+            src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/capsule_231x87.jpg`}
             alt={game.name}
-            fill
+            width={229}
+            height={87}
             className="object-cover rounded-md cursor-pointer border hover:border-yblue"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="eager"
           />
         </Link>
       </HoverCardTrigger>
       <HoverCardContent side="right" align="start" className="p-0">
-        {game.videos && (
-          <iframe
-            src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
-            className="w-full h-1/2"
-          />
-        )}
         <CardContent className="flex flex-col justify-around h-1/2 p-2 space-y-2">
           <CardTitle className="line-clamp-2">{game.name}</CardTitle>
           <small>Release Date: {releaseDate}</small>
@@ -55,8 +48,11 @@ const ListView = ({ game }: any) => {
           <div className="flex justify-between">
             <span>IGDB + Critic Rating:</span>
             <p className="flex gap-1">
-              {ratingFace}
-              <span>{game.total_rating?.toFixed(0)}%</span>
+              <span>{ratingFace}</span>
+              <span>
+                {game.total_rating?.toFixed(0)}
+                {game.total_rating && "%"}
+              </span>
             </p>
           </div>
         </CardContent>
@@ -66,3 +62,12 @@ const ListView = ({ game }: any) => {
 };
 
 export default ListView;
+
+//removed for performance issues with youtube embeds
+// {game.videos && (
+//   <iframe
+//     src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
+//     className="w-full h-1/2"
+//     loading="lazy"
+//   />
+// )}

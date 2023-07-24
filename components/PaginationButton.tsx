@@ -28,7 +28,7 @@ const PaginationButton = ({
   gamesLength,
 }: PaginationButtonProps) => {
   return (
-    <div className="flex flex-col items-center justify-center  gap-2">
+    <div className="flex flex-col items-end justify-center  gap-2">
       <div className="flex gap-5">
         {Number(pageNumber) > 1 ? (
           <Button

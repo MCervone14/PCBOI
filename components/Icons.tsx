@@ -26,7 +26,6 @@ import {
   Menu,
   MessageSquare,
   Minus,
-  Moon,
   MoreHorizontal,
   MoreVertical,
   Plus,
@@ -37,7 +36,6 @@ import {
   ShoppingBag,
   Sliders,
   SlidersHorizontal,
-  SunMedium,
   Trash,
   Twitter,
   Twitch,
@@ -54,23 +52,31 @@ import {
   Smile,
   LayoutGrid,
   LayoutList,
+  PlayCircle,
   type Icon as LucideIcon,
   type LucideProps,
 } from "lucide-react";
 
 import { BsDiscord } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
+import { FcGoogle, FcLinux } from "react-icons/fc";
+import { AiFillWindows } from "react-icons/ai";
+import { SiMacos } from "react-icons/si";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  playCircle: PlayCircle,
+  thumbsUp: FaThumbsUp,
+  thumbsDown: FaThumbsDown,
+  Linux: FcLinux,
+  macos: SiMacos,
+  windows: AiFillWindows,
   layoutGrid: LayoutGrid,
   layoutList: LayoutList,
   google: FcGoogle,
   twitch: Twitch,
   discord: BsDiscord,
-  sun: SunMedium,
-  moon: Moon,
   twitter: Twitter,
   close: X,
   spinner: Loader2,

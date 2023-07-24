@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import ReviewLayout from "@/components/layouts/ReviewLayout";
 
 export default function ReviewLayoutPage({

@@ -42,7 +42,7 @@ const MainNav = ({ items }: MainNavProps) => {
                 {items[0].title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] list-none">
                   {items[0].items.map((item, idx) => (
                     <ListItem
                       key={idx}
@@ -66,7 +66,7 @@ const MainNav = ({ items }: MainNavProps) => {
                     {item.title}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[500px]">
+                    <ul className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[500px] list-none">
                       {item.items.map((item, idx) => (
                         <ListItem
                           key={idx}

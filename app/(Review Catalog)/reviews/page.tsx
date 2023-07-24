@@ -1,5 +1,6 @@
 import ReviewCard from "@/components/cards/ReviewCard";
 import { allDocs } from "@/.contentlayer/generated";
+import Shell from "@/components/Shell";
 
 const getReviews = async () => {
   const reviews = await allDocs
@@ -12,13 +13,13 @@ const getReviews = async () => {
 const ReviewsPage = async () => {
   const reviews = await getReviews();
   return (
-    <>
-      {reviews.map((doc, idx) => (
-        <>
-          <ReviewCard key={idx} {...doc} />
-        </>
-      ))}
-    </>
+    <Shell className="space-y-20">
+      {reviews.length > 0 ? (
+        reviews.map((doc, idx) => <ReviewCard key={idx} {...doc} />)
+      ) : (
+        <div>There seems to be no reviews at this time.</div>
+      )}
+    </Shell>
   );
 };
 

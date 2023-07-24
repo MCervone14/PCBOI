@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id                        String     @id @default(cuid()) @map("_id")
+  appid                     String     @unique
+  title                     String     @unique
+  background_image          String?
+  header_image              String?
+  game_description          String?
+  review_descriptor_summary String[]
+  release_date              String?
+  developers                String[]
+  publishers                String[]
+  tags                      String[]
+  movies                    String[]
+  screenshots               String[]
+  game_features             String[]
+  languages                 Language[]
+  game_rating_icon          String?
+  game_rating_descriptors   String[]
+  game_rating               String?
+  about_the_game            String[]
+  metacritic_score          String?
+  metacritic_link           String?
+  reviews                   Review[]
+  createdAt                 DateTime?  @default(now())
+  updatedAt                 DateTime?  @updatedAt
+}
+
+type Review {
+  href           String?
+  avatar         Avatar?
+  username       String?
+  review_date    String?
+  review_text    String?
+  recommendation String?
+  hours_played   String?
+}
+
+type Avatar {
+  src    String?
+  srcset String?
+}
+
+type Language {
+  language  String?
+  interface String?
+  fullAudio String?
+  subtitles String?
+}

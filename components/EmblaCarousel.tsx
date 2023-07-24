@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import useEmblaCarousel, {
   EmblaCarouselType,
   EmblaOptionsType,
@@ -14,6 +14,7 @@ import { gameCategories } from "@/config/games";
 import Image from "next/image";
 import { Icons } from "./Icons";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 type EmblaProps = {
   slides: number[];
@@ -75,17 +76,17 @@ const EmblaCarousel: React.FC<EmblaProps> = (props) => {
                   }`}
                   prefetch={false}
                 >
-                  <Image
-                    className="object-cover absolute brightness-[.2] z-[-1] w-full"
-                    src={categories![index]?.image as string}
-                    alt={`${categories![index]?.title} Category Link`}
-                    aria-label={`${categories![index]?.title} Category Link`}
-                    fill
-                    loading="lazy"
-                    placeholder="blur"
-                    blurDataURL={categories![index]?.image as string}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
+                  <Suspense fallback={<Skeleton className="w-full h-full" />}>
+                    <Image
+                      className="object-cover absolute brightness-[.2] z-[-1] w-full"
+                      src={categories![index]?.image as string}
+                      alt={`${categories![index]?.title} Category Link`}
+                      aria-label={`${categories![index]?.title} Category Link`}
+                      fill
+                      placeholder="blur"
+                      blurDataURL={categories![index]?.image as string}
+                    />
+                  </Suspense>
                   <p className="text-primary text-4xl flex justify-center items-center w-full h-full font-extrabold">
                     {categories![index]?.title}
                   </p>

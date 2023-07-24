@@ -1,5 +1,9 @@
 import { type Icons } from "@/components/Icons";
 
+declare global {
+  var prisma: import("@prisma/client").PrismaClient;
+}
+
 export interface NavItem {
   title: string;
   href?: string;

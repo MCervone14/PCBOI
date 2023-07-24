@@ -50,8 +50,8 @@ export const mainConfig = {
         },
         {
           title: "Recent",
-          href: "/reviews/recent",
-          description: "Recent Reviews from the last last Month",
+          href: "/reviews",
+          description: "Recent Reviews",
         },
       ],
     },

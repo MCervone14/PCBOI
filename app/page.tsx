@@ -4,13 +4,14 @@ import TitleHeader from "@/components/TitleHeader";
 import ListView from "@/components/layouts/ListView";
 import { Separator } from "@/components/ui/separator";
 import { allDocs } from "@/.contentlayer/generated";
-import ReviewCard from "@/components/cards/ReviewCard";
-import { gameCategories } from "@/config/games";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import EmblaCarousel from "@/components/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel-react";
+import ReviewHomePageCard from "@/components/cards/ReviewHomePageCard";
+import { Suspense } from "react";
+import LoadingHomePage from "@/components/layouts/LoadingHomePage";
 
 const OPTIONS: EmblaOptionsType = {};
 const SLIDE_COUNT = 9;
@@ -43,7 +44,9 @@ const fetchHomepageLists = async (
       Authorization: `Bearer ${process.env.API_SECRET_TOKEN}`,
     },
     body: `f  id, slug, name, total_rating, total_rating_count,videos.*, external_games.uid, external_games.category, cover.url, release_dates.platform, first_release_date, genres.name; sort total_rating desc; limit 25;
-    where cover.url != null & release_dates.platform = (6) & id = (1348,217553,199116,204354,126212,240558,199748,228258,187096,145216,235846);`,
+    where cover.url != null & release_dates.platform = (6) & id = (217553,199116,204354,126212,240558,199748,236660,187096,145216,235846);`,
+    // 235846 = Halls Of Torment, 187096 = Forever Skies, 236660 = Ghost Trick, 217553 = Story of Seasons, 199748 = 20 minutes till Dawn, 199116 = Brotato, 126212 = Trepang 2, 204354 = Aliens: Dark Descent, 145216 = fight forever
+    // 1348, 240558 = F1,
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
@@ -52,7 +55,6 @@ const fetchHomepageLists = async (
 };
 
 export default async function Home() {
-  const categories = gameCategories[0]?.subcategories;
   const { TopNewReleases, TopSellerGames } = await fetchHomepageLists("games", {
     offset: 0,
   });
@@ -61,17 +63,19 @@ export default async function Home() {
     <div className="mx-auto w-full md:container">
       <div>
         <div className="relative image-container">
-          <AspectRatio ratio={19.5 / 9}>
-            <Image
-              src="/starfield.jpg"
-              alt="Photo"
-              fill
-              className="rounded-lg object-cover mx-auto z-[-1]"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              placeholder="blur"
-              blurDataURL="/starfield.jpg"
-            />
-          </AspectRatio>
+          <Suspense fallback={<LoadingHomePage />}>
+            <AspectRatio ratio={19.5 / 9}>
+              <Image
+                src="/starfield.jpg"
+                alt="Photo"
+                fill
+                className="rounded-lg object-cover mx-auto z-[-1]"
+                placeholder="blur"
+                blurDataURL="/starfield.jpg"
+                priority
+              />
+            </AspectRatio>
+          </Suspense>
           <Button
             variant="link"
             className="absolute bottom-4 right-4 text-xs opacity-30"
@@ -82,18 +86,18 @@ export default async function Home() {
           </Button>
         </div>
         <div className="flex flex-col items-center mx-auto w-full mb-8">
-          <h2 className="pb-3 font-bold lg:text-5xl md:text-3xl transition sm:text-2xl text-center text-white">
+          <h1 className="pb-3 font-bold lg:text-5xl md:text-3xl transition sm:text-2xl text-center text-white">
             <Balancer>
               Everything Gaming, All in One Place. Search for Games and Reviews.
             </Balancer>
-          </h2>
+          </h1>
         </div>
         <div className="flex flex-col gap-2 mb-8">
           <TitleHeader title="Top Sellers" className="flex justify-between" />
           <Separator className="bg-primary" />
           <div className="flex flex-wrap justify-center gap-4 lg:gap-11">
             {TopSellerGames.map((game: any, idx: number) => (
-              <ListView key={idx} game={game} />
+              <ListView game={game} key={idx} />
             ))}
           </div>
           <div className="flex flex-col gap-2">
@@ -102,7 +106,7 @@ export default async function Home() {
               className="flex justify-between"
             />
             <Separator className="bg-primary" />
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-11">
+            <div className="flex flex-wrap justify-center gap-4 lg:gap-11 ">
               {TopNewReleases.map((game: any, idx: number) => (
                 <ListView key={idx} game={game} />
               ))}
@@ -116,11 +120,9 @@ export default async function Home() {
             <div className="mb-5 space-y-2">
               <TitleHeader title="New Reviews" />
               <Separator className="bg-primary" />
-              <div className="flex-wrap flex gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
                 {allDocs.map((doc, idx: number) => (
-                  <div key={idx}>
-                    <ReviewCard {...doc} />
-                  </div>
+                  <ReviewHomePageCard {...doc} key={idx} />
                 ))}
               </div>
             </div>

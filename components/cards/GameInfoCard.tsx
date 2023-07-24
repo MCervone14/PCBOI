@@ -1,12 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
-export default function GameInfoCard(data: any) {
+export default function GameInfoCard(gameData: any) {
   return (
     <Tabs defaultValue="details" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
@@ -16,36 +12,96 @@ export default function GameInfoCard(data: any) {
       <TabsContent value="details">
         <Card>
           <CardHeader>
-            <CardDescription
-              dangerouslySetInnerHTML={{ __html: data.short_description }}
-            />
+            <p>
+              <span className="opacity-50 mr-5">Description:</span>
+              {gameData.game_description}
+            </p>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex justify-between">
               <span className="opacity-50 mr-5">
-                {data.publishers.length > 1 ? "Developers:" : "Developer:"}
+                {gameData.publishers.length > 1 ? "Developers:" : "Developer:"}
               </span>{" "}
-              {data.developers.map((developer: string, idx: number) => (
-                <p key={idx}>{developer}</p>
-              ))}
+              <div className="flex gap-2">
+                {gameData.developers.map((developer: string, idx: number) => (
+                  <p key={idx}>
+                    {developer}
+                    <span>
+                      {idx === gameData.developers.length - 1 ? "" : ","}
+                    </span>
+                  </p>
+                ))}
+              </div>
             </div>
             <div className="flex justify-between">
               <span className="opacity-50 mr-5">
                 {" "}
-                {data.publishers.length > 1 ? "Publishers:" : "Publisher:"}
+                {gameData.publishers.length > 1 ? "Publishers:" : "Publisher:"}
               </span>
-              {data.publishers.map((publisher: string, idx: number) => (
-                <p key={idx}>{publisher}</p>
-              ))}
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="opacity-50 mr-5">Supported Languages:</span>{" "}
-              <div
-                dangerouslySetInnerHTML={{ __html: data.supported_languages }}
-                style={{ marginTop: "20px", marginBottom: "20px" }}
-              />
+              <div className="flex gap-2">
+                {gameData.publishers.map((publisher: string, idx: number) => (
+                  <p key={idx} className="flex">
+                    {publisher}
+                    <span>
+                      {idx === gameData.publishers.length - 1 ? "" : ","}
+                    </span>
+                  </p>
+                ))}
+              </div>
             </div>
             <div className="flex justify-between">
+              <span className="opacity-50 mr-5">Steam Rating:</span>
+              <div className="flex flex-col items-end">
+                {gameData.review_descriptor_summary.length > 1 ? (
+                  <p>{gameData?.review_descriptor_summary[1]}</p>
+                ) : (
+                  <p>{gameData?.review_descriptor_summary[0]}</p>
+                )}
+              </div>
+            </div>
+            <div className="flex justify-between">
+              {gameData?.metacritic_score !== null && (
+                <>
+                  <span className="opacity-50 mr-5">Metacritic:</span>
+                  <Link href={gameData?.metacritic_link}>
+                    {gameData?.metacritic_score}
+                  </Link>
+                </>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1 ">
+              <span className="opacity-50 mr-5">Tags:</span>
+
+              {gameData?.tags.map((tag: string, idx: number) => (
+                <span key={idx} className="bg-pink-500 p-1">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1 ">
+              <span className="opacity-50 mr-5">Features:</span>
+
+              {gameData?.game_features.map((feature: string, idx: number) => (
+                <span key={idx} className="bg-muted p-1">
+                  {feature}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap justify-between">
+              <span className="opacity-50 mr-5">
+                Steam Deck Compatibility:{" "}
+              </span>
+              {gameData.steam_deck_compatibility || "Not Available"}
+            </div>
+            {gameData?.gaming_rating && (
+              <div className="flex flex-wrap justify-between">
+                <span className="opacity-50 mr-5">Game Rating: </span>
+                {gameData?.game_rating}
+              </div>
+            )}
+
+            {/* {Might use later if I get the info on support platform} */}
+            {/* <div className="flex justify-between">
               <span className="opacity-50 mr-5">Supported Platforms:</span>{" "}
               <div className="flex items-center">
                 <div
@@ -66,7 +122,7 @@ export default function GameInfoCard(data: any) {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       </TabsContent>

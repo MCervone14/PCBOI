@@ -82,12 +82,21 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border box-border;
   }
   body {
     @apply dark bg-muted text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+h2 {
+  @apply border-b-2 border-primary block w-full mt-2;
+  @apply text-2xl font-semibold mb-2;
+}
+
+ul {
+  @apply list-disc list-inside mb-2;
 }
 
 .image-container {
@@ -167,7 +176,7 @@ body {
   height: auto;
   margin: 0 auto;
   display: block;
-  margin-top: 2rem;
+  margin-top: 8px;
 }
 
 .article-content {
@@ -180,4 +189,128 @@ body {
     1px 2px 4px 0px rgba(254, 52, 126, 0.7),
     2px 4px 8px 0px rgba(254, 52, 126, 0.7),
     2px 4px 16px 0px rgba(254, 52, 126, 0.7);
+}
+
+.fadeText:before {
+  content: "";
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 3.5%;
+  rotate: 180deg;
+  opacity: 25%;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.animate {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+  animation-fill-mode: backwards;
+}
+/* Pop In */
+.pop {
+  animation-name: pop;
+}
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+/* Slide In */
+.slide {
+  animation-name: slide;
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translate(4em, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Slide Left */
+.slide-left {
+  animation-name: slide-left;
+}
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translate(-40px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.slide-up {
+  animation-name: slide-up;
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(3em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.6s;
+}
+.delay-3 {
+  animation-delay: 0.9s;
+}
+.delay-4 {
+  animation-delay: 1.2s;
+}
+.delay-5 {
+  animation-delay: 1.5s;
+}
+.delay-6 {
+  animation-delay: 1.8s;
+}
+.delay-7 {
+  animation-delay: 2.1s;
+}
+.delay-8 {
+  animation-delay: 2.4s;
+}
+
+.mdxImage img {
+  margin: 10px auto;
+}
+
+@media (min-width: 640px) {
+  .desc::before {
+    transform: skewX(-3deg);
+    content: "";
+    background: #fff;
+    width: 30px;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
 }

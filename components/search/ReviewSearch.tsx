@@ -28,7 +28,6 @@ export default function SearchComboBox() {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
           role="combobox"
           aria-expanded={open}
           className="w-1/2 justify-between"

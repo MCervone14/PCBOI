@@ -1,64 +1,54 @@
-"use client";
-import Link from "next/link";
 import Image from "next/image";
-import { allDocs } from "@/.contentlayer/generated";
-import { useState } from "react";
-import { Badge } from "../ui/badge";
-import TitleHeader from "../TitleHeader";
 
-const ReviewHomePageCard = () => {
-  const [activeItem, setActiveItem] = useState(0);
-
+const ReviewHomePageCard = (doc: any) => {
   return (
-    <div className="w-[1200px] max-w-full">
-      <ul className="flex h-[200px] gap-[1.5%] group">
-        {allDocs.map((review, index) => (
-          <li
-            onClick={() => setActiveItem(index)}
-            aria-current={activeItem === index}
-            className={`w-[8%] bg-transparent [&[aria-current="true"]]:w-[48%] relative hover:w-[12%] 
-              transition-[width] [&:not(:hover),&:not(:last),&:not(:first)]:group-hover:w-[7%]
-              before:absolute before:bottom-0 before:top-0 before:left-[-10px] before:right-[-10px]  
-          
-              `}
-            key={review._id}
-          >
-            <div className="overflow-hidden relative h-full w-full">
-              <Image
-                src={review.image}
-                alt={review.title}
-                fill
-                className="object-cover rounded-2xl absolute h-[640px] w-[590px] brightness-50"
-              />
-              <div
-                className={`
-                    "left-8 top-8 w-[590px] p-4 transition-[transform,opacity] md:absolute md:p-0",
-                    ${
-                      activeItem === index
-                        ? "md:translate-x-0 md:opacity-100"
-                        : "md:translate-x-4 md:opacity-0"
-                    }`}
-              >
-                <p className="text-lg uppercase text-primary md:text-3xl">
-                  <span className="bg-green-600 rounded-lg mr-2 px-2">
-                    {review.review_type}
-                  </span>
-                  {review.title}
-                </p>
-                <div className="text-lg font-bold md:text-4xl flex gap-2">
-                  {review.tags.map((tag, idx) => (
-                    <Link href={`/reviews/tag/${tag}`} key={idx}>
-                      <Badge className="cursor-pointer bg-[#FF75E6]">
-                        {tag}
-                      </Badge>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div
+      className={`flex justify-between w-[60vmin] h-[25em] my-[2rem] mx-auto border-[8px] transition relative overflow-hidden 
+    border-blue-500 group ease-in-out duration-500`}
+    >
+      <div
+        className={`relative flex w-full h-full py-4 px-[.75rem] bg-${doc.sidebar_color} z-100 transition group-hover:transform 
+    group-hover:translate-x-[-30vmin] group-hover:z-0 ease-in-out duration-500`}
+      >
+        <div
+          className="group-hover:border-none flex flex-col 
+        justify-between w-[15vmin] h-full pt-[.5rem] pr-0 pb-0 pl-[.5rem] border-l-[3px] transition border-l-blue-500 ease-in-out duration-500"
+        >
+          <h1 className="animate delay-5 text-center z-20">{doc.title}</h1>
+          <p className="animate delay-5  mb-[2.5rem] z-20">{doc.review_type}</p>
+        </div>
+        <div
+          className={`group-hover:w-[40vmin] absolute top-0 right-0 w-[40vmin] h-[100%]
+      bg-no-repeat z-10 group-hover:bg-left ease-in-out duration-500`}
+        >
+          <Image
+            src={doc.image}
+            alt={doc.title}
+            fill
+            className="ease-in-out duration-500 mx-auto bg-cover"
+          />
+        </div>
+      </div>
+      <div
+        className="absolute top-0 right-0 w-[40vmin] h-full py-[3vmin] px-[4vmin] bg-white 
+    text-slate-500 [box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4)] overflow-y-scroll ease-in-out duration-500"
+      >
+        <p>
+          Trees are woody perennial plants that are a member of the kingdom{" "}
+          <em>Plantae</em>. All species of trees are grouped by their genus,
+          family, and order. This helps make identifying and studying trees
+          easier.
+        </p>
+        <p>
+          Apart from providing oxygen for the planet and beauty when they bloom
+          or turn color, trees are very useful. Certain species of hardwood and
+          softwood trees are excellent for timber, making furniture, and paper.
+        </p>
+        <p>
+          When managed properly, trees are a good source of renewable energy and
+          construction material.
+        </p>
+      </div>
     </div>
   );
 };

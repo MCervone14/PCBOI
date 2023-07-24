@@ -9,7 +9,9 @@ const nextConfig = {
       "www.giantbomb.com",
       "cdn.cloudflare.steamstatic.com",
       "cdn.akamai.steamstatic.com",
+      "avatars.akamai.steamstatic.com",
       "steamcdn-a.akamaihd.net",
+      "avatars.cloudflare.steamstatic.com",
     ],
   },
   experimental: {
