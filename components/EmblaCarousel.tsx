@@ -76,17 +76,15 @@ const EmblaCarousel: React.FC<EmblaProps> = (props) => {
                   }`}
                   prefetch={false}
                 >
-                  <Suspense fallback={<Skeleton className="w-full h-full" />}>
-                    <Image
-                      className="object-cover absolute brightness-[.2] z-[-1] w-full"
-                      src={categories![index]?.image as string}
-                      alt={`${categories![index]?.title} Category Link`}
-                      aria-label={`${categories![index]?.title} Category Link`}
-                      fill
-                      placeholder="blur"
-                      blurDataURL={categories![index]?.image as string}
-                    />
-                  </Suspense>
+                  <Image
+                    className="object-cover absolute brightness-[.2] z-[-1] w-full"
+                    src={categories![index]?.image as string}
+                    alt={`${categories![index]?.title} Category Link`}
+                    aria-label={`${categories![index]?.title} Category Link`}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={"/public/black_image.jpg"}
+                  />
                   <p className="text-primary text-4xl flex justify-center items-center w-full h-full font-extrabold">
                     {categories![index]?.title}
                   </p>

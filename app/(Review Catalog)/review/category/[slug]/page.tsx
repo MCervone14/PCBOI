@@ -1,5 +1,4 @@
 import { allDocs } from "@/.contentlayer/generated";
-import Shell from "@/components/Shell";
 import TitleHeader from "@/components/TitleHeader";
 import ReviewCard from "@/components/cards/ReviewCard";
 

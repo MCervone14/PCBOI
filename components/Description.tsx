@@ -8,30 +8,32 @@ interface DescriptionProps {
 }
 
 const Description = ({ gameData }: DescriptionProps) => {
-  const [showMore, setShowMore] = useState(false);
+  // const [showMore, setShowMore] = useState(false);
 
-  useEffect(() => {
-    const aboutTheGameDiv =
-      document.getElementById("about-the-game-div")?.clientHeight;
-    if (aboutTheGameDiv && aboutTheGameDiv > 1500) {
-      setShowMore(true);
-    } else {
-      setShowMore(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const aboutTheGameDiv =
+  //     document.getElementById("about-the-game-div")?.clientHeight;
+  //   if (aboutTheGameDiv && aboutTheGameDiv > 1500) {
+  //     setShowMore(true);
+  //   } else {
+  //     setShowMore(false);
+  //   }
+  // }, []);
 
   return (
     <div className="relative">
       <div
         id="about-the-game-div"
         dangerouslySetInnerHTML={{ __html: gameData }}
-        className={`article-content ${
-          showMore ? "max-h-fit overflow-visible" : "h-[1500px] overflow-hidden"
-        }`}
+        className={`article-content 
+          
+          `}
+        // Might use this later
+        // showMore ? "h-fit overflow-visible" : "h-[1500px] overflow-hidden"
       />
-      {!showMore && (
+      {/* {!showMore && (
         <ShowMoreButton setShowMore={setShowMore} showMore={showMore} />
-      )}
+      )} */}
     </div>
   );
 };

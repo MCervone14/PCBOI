@@ -12,6 +12,7 @@ import { EmblaOptionsType } from "embla-carousel-react";
 import ReviewHomePageCard from "@/components/cards/ReviewHomePageCard";
 import { Suspense } from "react";
 import LoadingHomePage from "@/components/layouts/LoadingHomePage";
+import starfield from "/public/starfield.jpg";
 
 const OPTIONS: EmblaOptionsType = {};
 const SLIDE_COUNT = 9;
@@ -62,72 +63,71 @@ export default async function Home() {
   return (
     <div className="mx-auto w-full md:container">
       <div>
-        <div className="relative image-container">
-          <Suspense fallback={<LoadingHomePage />}>
+        <Suspense fallback={<LoadingHomePage />}>
+          <div className="relative my-5">
             <AspectRatio ratio={19.5 / 9}>
               <Image
-                src="/starfield.jpg"
+                src={starfield}
                 alt="Photo"
                 fill
-                className="rounded-lg object-cover mx-auto z-[-1]"
+                className="rounded-lg object-cover mx-auto z-[0]"
                 placeholder="blur"
-                blurDataURL="/starfield.jpg"
-                priority
               />
             </AspectRatio>
-          </Suspense>
-          <Button
-            variant="link"
-            className="absolute bottom-4 right-4 text-xs opacity-30"
-          >
-            <Link href={`/game/1716740`} prefetch={false}>
-              Starfield (2023)
-            </Link>
-          </Button>
-        </div>
-        <div className="flex flex-col items-center mx-auto w-full mb-8">
-          <h1 className="pb-3 font-bold lg:text-5xl md:text-3xl transition sm:text-2xl text-center text-white">
-            <Balancer>
-              Everything Gaming, All in One Place. Search for Games and Reviews.
-            </Balancer>
-          </h1>
-        </div>
-        <div className="flex flex-col gap-2 mb-8">
-          <TitleHeader title="Top Sellers" className="flex justify-between" />
-          <Separator className="bg-primary" />
-          <div className="flex flex-wrap justify-center gap-4 lg:gap-11">
-            {TopSellerGames.map((game: any, idx: number) => (
-              <ListView game={game} key={idx} />
-            ))}
+            <Button
+              variant="link"
+              className="absolute bottom-4 right-4 text-xs opacity-30"
+            >
+              <Link href={`/game/1716740`} prefetch={false}>
+                Starfield (2023)
+              </Link>
+            </Button>
           </div>
-          <div className="flex flex-col gap-2">
-            <TitleHeader
-              title="Popular New Releases"
-              className="flex justify-between"
-            />
+          <div className="flex flex-col items-center mx-auto w-full mb-8">
+            <h1 className="pb-3 font-bold lg:text-5xl md:text-3xl transition sm:text-2xl text-center text-white">
+              <Balancer>
+                Everything Gaming, All in One Place. Search for Games and
+                Reviews.
+              </Balancer>
+            </h1>
+          </div>
+          <div className="flex flex-col gap-2 mb-8">
+            <TitleHeader title="Top Sellers" className="flex justify-between" />
             <Separator className="bg-primary" />
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-11 ">
-              {TopNewReleases.map((game: any, idx: number) => (
-                <ListView key={idx} game={game} />
+            <div className="flex flex-wrap justify-center gap-4 lg:gap-11">
+              {TopSellerGames.map((game: any, idx: number) => (
+                <ListView game={game} key={idx} />
               ))}
             </div>
-            <TitleHeader
-              title="Search by Category"
-              className="mt-10 flex justify-center"
-            />
-            <Separator className="bg-primary" />
-            <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-            <div className="mb-5 space-y-2">
-              <TitleHeader title="New Reviews" />
+            <div className="flex flex-col gap-2">
+              <TitleHeader
+                title="Popular New Releases"
+                className="flex justify-between"
+              />
               <Separator className="bg-primary" />
-              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
-                {allDocs.map((doc, idx: number) => (
-                  <ReviewHomePageCard {...doc} key={idx} />
+              <div className="flex flex-wrap justify-center gap-4 lg:gap-11 ">
+                {TopNewReleases.map((game: any, idx: number) => (
+                  <ListView key={idx} game={game} />
                 ))}
+              </div>
+              <TitleHeader
+                title="Search by Category"
+                className="mt-10 flex justify-center"
+              />
+              <Separator className="bg-primary" />
+              <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+              <div className="mb-5 space-y-2">
+                <TitleHeader title="New Reviews" />
+                <Separator className="bg-primary" />
+                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
+                  {allDocs.map((doc, idx: number) => (
+                    <ReviewHomePageCard {...doc} key={idx} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Suspense>
       </div>
     </div>
   );

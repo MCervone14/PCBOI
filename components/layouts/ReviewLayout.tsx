@@ -1,5 +1,3 @@
-import CategoryCard from "../cards/CategoryCard";
-import Link from "next/link";
 import ReviewSearch from "../search/ReviewSearch";
 import Shell from "../Shell";
 import TitleHeader from "../TitleHeader";
