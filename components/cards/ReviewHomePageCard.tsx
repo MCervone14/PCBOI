@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const ReviewHomePageCard = (doc: any) => {
   return (
@@ -48,6 +50,9 @@ const ReviewHomePageCard = (doc: any) => {
           When managed properly, trees are a good source of renewable energy and
           construction material.
         </p>
+        <Button variant="link" className="text-background text-right">
+          <Link href={`${doc.slug}`}>Read Review</Link>
+        </Button>
       </div>
     </div>
   );
