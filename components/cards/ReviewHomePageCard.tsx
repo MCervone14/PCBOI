@@ -9,7 +9,7 @@ const ReviewHomePageCard = (doc: any) => {
     border-blue-500 group ease-in-out duration-500`}
     >
       <div
-        className={`relative flex w-full h-full py-4 px-[.75rem] bg-${doc.sidebar_color} z-100 transition group-hover:transform 
+        className={`relative flex w-full h-full py-4 px-[.75rem] ${doc.sidebar_color} z-100 transition group-hover:transform 
     group-hover:translate-x-[-30vmin] group-hover:z-0 ease-in-out duration-500`}
       >
         <div
