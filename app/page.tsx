@@ -62,8 +62,8 @@ export default async function Home() {
 
   return (
     <div className="mx-auto w-full md:container">
-      <div>
-        <Suspense fallback={<LoadingHomePage />}>
+      <Suspense fallback={<LoadingHomePage />}>
+        <div>
           <div className="relative my-5">
             <AspectRatio ratio={19.5 / 9}>
               <Image
@@ -72,6 +72,7 @@ export default async function Home() {
                 fill
                 className="rounded-lg object-cover mx-auto z-[0]"
                 placeholder="blur"
+                priority={true}
               />
             </AspectRatio>
             <Button
@@ -127,8 +128,8 @@ export default async function Home() {
               </div>
             </div>
           </div>
-        </Suspense>
-      </div>
+        </div>
+      </Suspense>
     </div>
   );
 }

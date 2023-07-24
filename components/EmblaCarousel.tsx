@@ -12,9 +12,7 @@ import {
 } from "./EmblaCarouselArrowsDotsButtons";
 import { gameCategories } from "@/config/games";
 import Image from "next/image";
-import { Icons } from "./Icons";
 import Link from "next/link";
-import { Skeleton } from "./ui/skeleton";
 
 type EmblaProps = {
   slides: number[];
@@ -74,7 +72,7 @@ const EmblaCarousel: React.FC<EmblaProps> = (props) => {
                   href={`/games/${categories![index]?.genre}?id=${
                     categories![index]?.id
                   }`}
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <Image
                     className="object-cover absolute brightness-[.2] z-[-1] w-full"
@@ -84,6 +82,7 @@ const EmblaCarousel: React.FC<EmblaProps> = (props) => {
                     fill
                     placeholder="blur"
                     blurDataURL={"/public/black_image.jpg"}
+                    priority={true}
                   />
                   <p className="text-primary text-4xl flex justify-center items-center w-full h-full font-extrabold">
                     {categories![index]?.title}
