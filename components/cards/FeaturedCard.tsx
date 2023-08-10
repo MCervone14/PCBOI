@@ -35,7 +35,7 @@ const FeaturedCard = ({ game }: any) => {
             alt={game.name}
             width={264}
             height={350}
-            className="object-cover"
+            className="object-cover min-w-[264px] min-h-[350px]"
             loading="eager"
           />
         </CardHeader>

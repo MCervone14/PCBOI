@@ -1,19 +1,52 @@
-import { Icons } from "@/components/Icons";
+import Image from "next/image";
 
 export function getRatingFace(rating: number) {
-  if (rating <= 60) {
+  if (rating < 60) {
     return (
-      <Icons.frown className="w-6 h-6" color="orange" aria-hidden="true" />
+      <Image
+        src="/ratings-icons/double-arrow-d.png"
+        alt="double arrow down rating"
+        width={20}
+        height={20}
+      />
     );
-  } else if (rating <= 80) {
-    return <Icons.meh className="w-6 h-6 " color="yellow" aria-hidden="true" />;
-  } else if (rating <= 90) {
-    return <Icons.smile className="w-6 h-6" color="green" aria-hidden="true" />;
+  } else if (rating < 70) {
+    return (
+      <Image
+        src="/ratings-icons/arrow-down.png"
+        alt="arrow down rating"
+        width={20}
+        height={20}
+      />
+    );
+  } else if (rating < 80) {
+    return (
+      <Image
+        src="/ratings-icons/line.png"
+        alt="neutral rating"
+        width={20}
+        height={20}
+      />
+    );
+  } else if (rating < 90) {
+    return (
+      <Image
+        src="/ratings-icons/arrow-up.png"
+        alt="arrow up rating"
+        width={20}
+        height={20}
+      />
+    );
   } else if (rating <= 100) {
     return (
-      <Icons.smilePlus className="w-6 h-6" color="purple" aria-hidden="true" />
+      <Image
+        src="/ratings-icons/double-arrow-u.png"
+        alt="double arrow up rating"
+        width={20}
+        height={20}
+      />
     );
   } else {
-    return <p>No Rating</p>;
+    return <p className="opacity-75">--</p>;
   }
 }

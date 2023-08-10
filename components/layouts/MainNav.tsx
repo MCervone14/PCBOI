@@ -34,11 +34,11 @@ const MainNav = ({ items }: MainNavProps) => {
       >
         PCBOI
       </Link>
-      <NavigationMenu>
+      <NavigationMenu delayDuration={100}>
         <NavigationMenuList>
           {items?.[0]?.items ? (
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="h-auto ">
+              <NavigationMenuTrigger className="h-auto">
                 {items[0].title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>

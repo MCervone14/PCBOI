@@ -29,7 +29,6 @@ const HomeCoverCard = ({ game }: any) => {
           alt={game.name}
           fill
           className="object-cover w-auto h-auto rounded-l-md"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </Card>
     </Link>

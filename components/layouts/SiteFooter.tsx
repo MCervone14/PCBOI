@@ -3,9 +3,21 @@ import Link from "next/link";
 import { Caesar_Dressing } from "next/font/google";
 
 const links = [
-  { title: "Contact Us", href: "/contact", ariaLabel: "Contact Us" },
-  { title: "Terms", href: "/terms", ariaLabel: "Legal Terms and Conditions" },
-  { title: "About The Site", href: "/about", ariaLabel: "About The Site" },
+  {
+    title: "CheapShark Pricing Api",
+    href: "https://apidocs.cheapshark.com/",
+    ariaLabel: "CheapShark",
+  },
+  {
+    title: "IGDB Api",
+    href: "https://api-docs.igdb.com/#getting-started",
+    ariaLabel: "IGDB Api",
+  },
+  {
+    title: "Steam Api",
+    href: "https://steamcommunity.com/dev",
+    ariaLabel: "Steam Api",
+  },
 ];
 
 const Caesar = Caesar_Dressing({
@@ -21,6 +33,7 @@ const SiteFooter = () => {
         <div className="text-center text-base text-primary ">
           {links.map((link, idx) => (
             <Link
+              target="_blank"
               key={idx}
               href={link.href}
               aria-label={link.ariaLabel}
@@ -37,9 +50,7 @@ const SiteFooter = () => {
           >
             PCBOI
           </Link>
-          <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-300">
-            © Copyright 2023
-          </p>
+          <p className="mt-4 text-sm text-primary sm:mt-0 opacity-50">© 2023</p>
         </div>
       </div>
     </footer>

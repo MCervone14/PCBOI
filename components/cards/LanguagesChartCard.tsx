@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Icons } from "../Icons";
 import ShowMoreButton from "../ShowMoreButton";
 import { Card } from "../ui/card";
 import { type Language } from "@prisma/client";
 import {
   Table,
-  TableCaption,
   TableHeader,
   TableRow,
   TableHead,
@@ -21,11 +20,22 @@ interface LanguagesChartCardProps {
 
 const LanguagesChartCard = ({ languages }: LanguagesChartCardProps) => {
   const [showMore, setShowMore] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (elementRef.current?.clientHeight! > 100) {
+      setShowMore(true);
+    } else {
+      setShowMore(false);
+    }
+  }, []);
+
   return (
     <Card
-      className={`w-[400px] ${
-        showMore ? "h-auto" : "h-[140px]"
+      className={`w-full md:w-[400px] ${
+        showMore ? "h-[130px]" : "h-auto"
       } mt-2 overflow-hidden relative `}
+      ref={elementRef}
     >
       <Table>
         <TableHeader>
@@ -39,7 +49,7 @@ const LanguagesChartCard = ({ languages }: LanguagesChartCardProps) => {
         <TableBody>
           {languages.map((language) => (
             <TableRow key={language.language}>
-              <TableCell className="font-medium text-xs">
+              <TableCell className="font-medium text-xs text-center">
                 {language.language}
               </TableCell>
               <TableCell>
@@ -67,11 +77,13 @@ const LanguagesChartCard = ({ languages }: LanguagesChartCardProps) => {
           ))}
         </TableBody>
       </Table>
-      <ShowMoreButton
-        showMore={showMore}
-        setShowMore={setShowMore}
-        className="absolute bottom-0 right-0"
-      />
+      {showMore && (
+        <ShowMoreButton
+          showMore={showMore}
+          setShowMore={setShowMore}
+          className="absolute bottom-0 right-0"
+        />
+      )}
     </Card>
   );
 };

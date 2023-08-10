@@ -1,5 +1,11 @@
 import Image from "next/image";
-import { CardContent, CardDescription, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import {
   HoverCard,
   HoverCardContent,
@@ -13,28 +19,50 @@ import Link from "next/link";
 const ListView = ({ game }: any) => {
   const steamId = game.external_games?.find((item: any) => item.category === 1);
   const appId = steamId?.uid;
-  const ratingFace = getRatingFace(game.total_rating?.toFixed(0));
   const releaseDate = dayjs
     .unix(game.first_release_date)
     .format("MMM DD, YYYY");
   return (
-    <HoverCard openDelay={400}>
+    <HoverCard openDelay={200}>
       <HoverCardTrigger asChild className="flex relative h-[87px] w-[229px]">
         <Link href={`/game/${appId}`} prefetch={false}>
-          <Image
-            src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/capsule_231x87.jpg`}
-            alt={game.name}
-            width={229}
-            height={87}
-            className="object-cover rounded-md cursor-pointer border hover:border-yblue"
-            loading="eager"
-          />
+          <div>
+            <Card className="p-0">
+              <CardHeader className="p-0 relative flex">
+                <Image
+                  src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/capsule_231x87.jpg`}
+                  alt={game.name}
+                  width={229}
+                  height={87}
+                  className="object-cover rounded-md cursor-pointer border hover:border-yblue"
+                  loading="eager"
+                />
+                <span className="flex items-center gap-1 text-xs font-bold my-auto absolute right-0 bottom-0 border-t-primary border-l-primary border p-1 bg-black rounded-br-md">
+                  <Image
+                    src={"/ratings-icons/double-arrow-d.png"}
+                    alt="rating arrow double down"
+                    width={10}
+                    height={10}
+                    className=""
+                  />
+                  {game.total_rating?.toFixed(0) || "--"}
+                </span>
+              </CardHeader>
+              <CardContent className="absolute flex justify-around items-center h-full"></CardContent>
+            </Card>
+          </div>
         </Link>
       </HoverCardTrigger>
-      <HoverCardContent side="right" align="start" className="p-0">
+
+      {/* <HoverCardContent
+        side="top"
+        align="start"
+        className="p-0 max-w-[229px]"
+        sideOffset={-123}
+      >
         <CardContent className="flex flex-col justify-around h-1/2 p-2 space-y-2">
           <CardTitle className="line-clamp-2">{game.name}</CardTitle>
-          <small>Release Date: {releaseDate}</small>
+          <span>Release Date: {releaseDate}</span>
           <CardDescription className="line-clamp-3">
             {game.genres?.map((genre: any) => (
               <Badge
@@ -45,18 +73,8 @@ const ListView = ({ game }: any) => {
               </Badge>
             ))}
           </CardDescription>
-          <div className="flex justify-between">
-            <span>IGDB + Critic Rating:</span>
-            <p className="flex gap-1">
-              <span>{ratingFace}</span>
-              <span>
-                {game.total_rating?.toFixed(0)}
-                {game.total_rating && "%"}
-              </span>
-            </p>
-          </div>
         </CardContent>
-      </HoverCardContent>
+      </HoverCardContent> */}
     </HoverCard>
   );
 };

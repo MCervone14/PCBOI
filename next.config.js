@@ -12,6 +12,7 @@ const nextConfig = {
       "avatars.akamai.steamstatic.com",
       "steamcdn-a.akamaihd.net",
       "avatars.cloudflare.steamstatic.com",
+      "cheapshark.com",
     ],
   },
   experimental: {

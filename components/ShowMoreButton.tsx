@@ -12,7 +12,7 @@ const ShowMoreButton = ({
 }) => {
   return (
     <div className="">
-      {!showMore ? (
+      {showMore ? (
         <Button
           id="show-more"
           variant="link"
@@ -20,7 +20,7 @@ const ShowMoreButton = ({
             `text-xs absolute bottom-0 right-0 bg-transparent text-pink-500 bg-blue-950 w-full hover:bg-blue-900`,
             className
           )}
-          onClick={() => setShowMore(true)}
+          onClick={() => setShowMore(false)}
         >
           Show More
         </Button>

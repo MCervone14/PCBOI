@@ -8,16 +8,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icons } from "../Icons";
 
-const ReviewCard = (review: any) => {
+const SteamReviewCard = (review: any) => {
   return (
-    <Card className={`gap-2 mb-5 w-full h-fit`} id="review-card">
+    <Card className={`gap-2 mb-5 w-full h-auto`}>
       <CardHeader className="bg-pink-500 bg-muted p-2 w-full">
         <div className="flex items-center ">
           <Link
             href={review.href}
             className="mr-2 flex-col flex justify-center "
           >
-            <div className="hover:border-yblue w-fit rounded-md ">
+            <div className="hover:border-yblue w-fit">
               <Image
                 className="object-cover align-left cursor-pointer"
                 src={`${review.avatar.src}`}
@@ -60,4 +60,4 @@ const ReviewCard = (review: any) => {
   );
 };
 
-export default ReviewCard;
+export default SteamReviewCard;

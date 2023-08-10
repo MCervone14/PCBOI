@@ -1,33 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ShowMoreButton from "./ShowMoreButton";
 import SteamReviewCard from "./cards/SteamReviewCard";
-import { type Review } from "@prisma/client";
 
-interface ReviewCardWrapperProps {
-  reviewData: Review[];
-}
-
-const ReviewCardWrapper = ({ reviewData }: ReviewCardWrapperProps) => {
+const ReviewCardWrapper = (review: any) => {
   const [showMore, setShowMore] = useState(false);
+
+  const elementRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (elementRef.current?.clientHeight! > 400) {
+      setShowMore(true);
+    } else {
+      setShowMore(false);
+    }
+  }, []);
+
   return (
     <div>
-      {reviewData.map((review: any) => (
-        <>
-          <div>
-            <div
-              key={review.username}
-              className={`relative overflow-hidden ${
-                showMore ? "h-auto" : "h-[550px]"
-              }`}
-            >
-              <SteamReviewCard key={review.username} {...review} />
-              <ShowMoreButton showMore={showMore} setShowMore={setShowMore} />
-            </div>
-          </div>
-        </>
-      ))}
+      <div
+        key={review.username}
+        className={`relative overflow-hidden ${
+          showMore ? "h-[350px] mb-4" : "h-auto"
+        }`}
+        ref={elementRef}
+      >
+        <SteamReviewCard key={review.username} {...review} />
+        {showMore && (
+          <ShowMoreButton showMore={showMore} setShowMore={setShowMore} />
+        )}
+      </div>
     </div>
   );
 };

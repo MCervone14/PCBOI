@@ -1,13 +1,18 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function GameInfoCard(gameData: any) {
+export default function GameInfoCard({ gameData, storeData }: any) {
   return (
-    <Tabs defaultValue="details" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="details">Details</TabsTrigger>
-        <TabsTrigger value="whereToBuy">Where to Buy</TabsTrigger>
+    <Tabs defaultValue="details" className="md:w-[400px] w-full mb-2">
+      <TabsList className="grid w-full grid-cols-2 bg-pink-500">
+        <TabsTrigger value="details" className="text-slate-900">
+          Details
+        </TabsTrigger>
+        <TabsTrigger value="whereToBuy" className="text-slate-900">
+          Where to Buy
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="details">
         <Card>
@@ -128,55 +133,62 @@ export default function GameInfoCard(gameData: any) {
       </TabsContent>
       <TabsContent value="whereToBuy">
         <Card>
-          <CardContent className="space-y-2 flex flex-col p-5">
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Steam:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Epic Games Store:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">GoG:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Humble Bundle:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Microsoft Store:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Target:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Best Buy:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Amazon:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Origin:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Itch.io:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Green Man Gaming:</span>
-              <p>Price</p>
-            </div>
-            <div className="flex justify-between">
-              <span className="opacity-50 mr-5">Fanatical:</span>
-              <p>Price</p>
-            </div>
+          <CardContent className="grid grid-cols-2 p-2.5 gap-7">
+            {storeData?.map((store: any, idx: number) => {
+              if (store.isActive && store.deals.length > 0) {
+                if (store.deals[0].isOnSale === "1") {
+                  return (
+                    <div key={idx} className="flex items-center gap-10">
+                      <Image
+                        id={store.storeID}
+                        src={`https://cheapshark.com${store.images.logo}`}
+                        alt={store.storeName}
+                        width={40}
+                        height={40}
+                        className=""
+                      />
+                      <Link
+                        href={`https://www.cheapshark.com/redirect?dealID=${store.deals[0].dealID}`}
+                        target="_blank"
+                      >
+                        <div className="flex flex-col spacing-y-2 group">
+                          <p className="line-through opacity-25">
+                            ${store.deals[0].normalPrice}
+                          </p>
+                          <p className="text-green-600 font-bold text-lg group-hover:underline ">
+                            ${store.deals[0].salePrice}
+                          </p>
+                          <p className="text-yellow-600 text-sm group-hover:underline">
+                            {Number(store.deals[0].savings).toFixed(0)}%
+                            discount!
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={idx} className="flex items-center gap-10">
+                      <Image
+                        id={store.storeID}
+                        src={`https://cheapshark.com${store.images.logo}`}
+                        alt={store.storeName}
+                        width={40}
+                        height={40}
+                        className=""
+                      />
+                      <Link
+                        href={`https://www.cheapshark.com/redirect?dealID=${store.deals[0].dealID}`}
+                        target="_blank"
+                        className="hover:underline hover:text-pink-500"
+                      >
+                        <p>${store.deals[0].normalPrice}</p>
+                      </Link>
+                    </div>
+                  );
+                }
+              }
+            })}
           </CardContent>
         </Card>
       </TabsContent>

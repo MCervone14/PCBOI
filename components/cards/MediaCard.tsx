@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Icons } from "../Icons";
@@ -11,6 +11,7 @@ interface MediaCardProps {
 
 const MediaCard = ({ movie }: MediaCardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const movieUrl = movie?.replace(".184x123.jpg", "480.webm");
 
   const handleThumbnailClick = () => {
@@ -22,7 +23,7 @@ const MediaCard = ({ movie }: MediaCardProps) => {
   };
 
   return (
-    <div className="relative mb-2">
+    <div className="relative mb-2" id="media">
       <div>
         <Icons.playCircle
           onClick={handleThumbnailClick}

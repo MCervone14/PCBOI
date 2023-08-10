@@ -12,7 +12,6 @@ interface ScreenShotProps {
 
 const ScreenShotCard = ({ screenshot }: ScreenShotProps) => {
   const [isActive, setIsActive] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const biggerScreenShot = screenshot?.replace(".116x65.jpg", ".1920x1080.jpg");
   const handleThumbnailClick = () => {
     setIsActive(true);
@@ -23,7 +22,7 @@ const ScreenShotCard = ({ screenshot }: ScreenShotProps) => {
   };
 
   return (
-    <div className="relative ">
+    <div className="relative" id="screenshots">
       <Image
         src={screenshot || ""}
         alt="Screenshot Thumbnail"

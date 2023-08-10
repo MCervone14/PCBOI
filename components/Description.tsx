@@ -1,39 +1,51 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ShowMoreButton from "./ShowMoreButton";
+import Image from "next/image";
 
 interface DescriptionProps {
-  gameData: string[];
+  aboutTheGame: string[];
+  headerImage: string | null;
+  title: string;
 }
 
-const Description = ({ gameData }: DescriptionProps) => {
-  // const [showMore, setShowMore] = useState(false);
+const Description = ({
+  aboutTheGame,
+  headerImage,
+  title,
+}: DescriptionProps) => {
+  const [showMore, setShowMore] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const aboutTheGameDiv =
-  //     document.getElementById("about-the-game-div")?.clientHeight;
-  //   if (aboutTheGameDiv && aboutTheGameDiv > 1500) {
-  //     setShowMore(true);
-  //   } else {
-  //     setShowMore(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (elementRef.current?.clientHeight! > 1500) {
+      setShowMore(true);
+    } else {
+      setShowMore(false);
+    }
+  }, []);
 
   return (
     <div className="relative">
-      <div
-        id="about-the-game-div"
-        dangerouslySetInnerHTML={{ __html: gameData }}
-        className={`article-content 
-          
-          `}
-        // Might use this later
-        // showMore ? "h-fit overflow-visible" : "h-[1500px] overflow-hidden"
+      <Image
+        src={headerImage!}
+        alt={title}
+        width={400}
+        height={400}
+        className="object-cover mt-2 w-full md:hidden"
       />
-      {/* {!showMore && (
+      <div
+        ref={elementRef}
+        dangerouslySetInnerHTML={{ __html: aboutTheGame }}
+        className={`article-content ${
+          showMore ? "h-[1500px] overflow-hidden" : "h-auto overflow-visible"
+        }
+          `}
+      />
+      {showMore && (
         <ShowMoreButton setShowMore={setShowMore} showMore={showMore} />
-      )} */}
+      )}
     </div>
   );
 };

@@ -40,20 +40,20 @@ export const mainConfig = {
         })),
       ],
     })),
-    {
-      title: "Reviews",
-      items: [
-        {
-          title: "All Reviews",
-          href: "/reviews",
-          description: "Catalog of Reviews",
-        },
-        {
-          title: "Recent",
-          href: "/reviews",
-          description: "Recent Reviews",
-        },
-      ],
-    },
+    // {
+    //   title: "Reviews",
+    //   items: [
+    //     {
+    //       title: "All Reviews",
+    //       href: "/reviews",
+    //       description: "Catalog of Reviews",
+    //     },
+    //     {
+    //       title: "Recent",
+    //       href: "/reviews",
+    //       description: "Recent Reviews",
+    //     },
+    //   ],
+    // },
   ] as MainNavItem[],
 };

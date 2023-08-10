@@ -6,7 +6,7 @@ import Link from "next/link";
 const ReviewCard = (doc: any) => {
   return (
     <div
-      className="flex flex-col my-4 mx-auto shadow-[0_3px_7px_-1px_rgba(0, 0, 0, .1)] mb-[1.6%] group bg-primary rounded-sm overflow-hidden z-0
+      className="flex flex-col my-4 mx-auto group bg-primary rounded-sm overflow-hidden z-0
     md:flex-row md:max-w-[700px]
     "
     >
