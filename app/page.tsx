@@ -9,11 +9,8 @@ import starfield from "/public/starfield.jpg";
 import TableView from "@/components/layouts/TableView";
 import { PopularNewReleases } from "./actions/PopularNewReleases";
 import { EpicReleasesOf2023 } from "./actions/EpicReleasesOf2023";
-import {
-  getAppIdsWithTitle,
-  getCheapSharkPriceInfo,
-  mergePriceData,
-} from "@/lib/utils";
+import { getAppIdsWithTitle, mergePriceData } from "@/lib/utils";
+import { getCheapSharkPriceInfo } from "@/app/actions/GetCheapSharkPriceInfo";
 import { HiddenGems } from "./actions/HiddenGems";
 import { AwesomeIndieGames } from "./actions/AwesomeIndieGames";
 import { EndlessHours } from "./actions/EndlessHours";
@@ -94,6 +91,7 @@ export default async function Home() {
     {
       title: "2023 Game Year",
       category: F_Epic_Releases_of_2023,
+      released: true,
     },
     {
       title: "Hidden Gems",

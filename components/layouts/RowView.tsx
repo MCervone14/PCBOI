@@ -4,25 +4,20 @@ import { TableRow, TableCell } from "../ui/table";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { getRatingFace } from "@/lib/RatingHelper";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "../ui/hover-card";
 
-const fetchGame = async (id: string) => {
-  try {
-    const data = await prisma.game.findUnique({
-      where: {
-        appid: id,
-      },
-    });
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
-  }
-};
+// const fetchGame = async (id: string) => {
+//   try {
+//     const data = await prisma.game.findUnique({
+//       where: {
+//         appid: id,
+//       },
+//     });
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     throw error;
+//   }
+// };
 
 const RowView = ({ game, released }: any) => {
   const newUrl = game.cover.url.replace("thumb", "cover_small_2x");
@@ -58,11 +53,12 @@ const RowView = ({ game, released }: any) => {
       )}
       <TableCell className="text-center p-0 opacity-75 sm:w-full">
         <Link
-          href={`https://www.cheapshark.com/redirect?dealID=${game?.priceData?.cheapestDealID}`}
+          href={`https://www.cheapshark.com/redirect?dealID=${game.priceData?.cheapestDealID}`}
           target="_blank"
           className="text-primary hover:text-pink-500"
         >
-          {(game.priceData && `$${game.priceData.cheapest}`) || "--"}
+          {console.log(game.priceData?.cheapest)}
+          {(game.priceData?.cheapest && `$${game.priceData.cheapest}`) || "--"}
         </Link>
       </TableCell>
     </TableRow>
