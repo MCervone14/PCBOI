@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import { getRatingFace } from "@/lib/RatingHelper";
 
 const FeaturedCard = ({ game }: any) => {
-  const newUrl = game.cover.url.replace("thumb", "cover_big_2x");
+  const IGDBUrl = game.cover?.url.replace("thumb", "cover_big_2x");
   const ratingFace = getRatingFace(game.total_rating?.toFixed(0));
   const releaseDate = dayjs
     .unix(game.first_release_date)
@@ -31,11 +31,11 @@ const FeaturedCard = ({ game }: any) => {
       <div className="h-full overflow-hidden rounded-sm">
         <CardHeader className="border-b p-0 relative h-[350px] w-[264px]">
           <Image
-            src={`https:${newUrl}`}
+            src={`https:${IGDBUrl}`}
             alt={game.name}
             width={264}
             height={350}
-            className="object-cover min-w-[264px] min-h-[350px]"
+            className="min-w-[264px] min-h-[350px]"
             loading="eager"
           />
         </CardHeader>

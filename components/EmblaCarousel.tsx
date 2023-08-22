@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, Suspense } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel, {
   EmblaCarouselType,
   EmblaOptionsType,

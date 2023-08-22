@@ -1,5 +1,6 @@
 export const ComingSoon = async (url: string) => {
   return await fetch(url, {
+    next: { revalidate: 86400 },
     method: "POST",
     headers: {
       "Content-Type": "application/json",

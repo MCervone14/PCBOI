@@ -32,7 +32,7 @@ const Header = ({
       {description ? (
         <p
           className={cn(
-            "line-clamp-2 text-muted-foreground",
+            "line-clamp-2 text-yellow-500",
             size === "default" && "text-lg"
           )}
         >

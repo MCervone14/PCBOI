@@ -18,7 +18,7 @@ const fetchTopReleases = async (
       Authorization: `Bearer ${process.env.API_SECRET_TOKEN}`,
     },
     body: `f  id, slug, name, external_games.uid, external_games.category, videos.*, total_rating, total_rating_count, cover.url, release_dates.platform, first_release_date, genres.name; ${sort}; limit 20; offset ${offset};
-    where cover.url != null & total_rating != null & release_dates.platform = (6);`,
+    where cover.url != null & total_rating != null & release_dates.platform = (6) & first_release_date > 	1641016800;`,
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
@@ -28,7 +28,7 @@ const fetchTopReleases = async (
 const Top200Page = async ({ searchParams }: any) => {
   const games = await fetchTopReleases("games", {
     offset: Number(searchParams.offset) || 0,
-    sort: searchParams.sort || "sort name asc",
+    sort: searchParams.sort || "sort first_release_date desc",
   });
   return (
     <Shell className="space-y-20">

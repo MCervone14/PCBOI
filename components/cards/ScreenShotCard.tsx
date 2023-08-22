@@ -1,10 +1,8 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { Icons } from "../Icons";
-import { Skeleton } from "../ui/skeleton";
 
 interface ScreenShotProps {
   screenshot?: string;

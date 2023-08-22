@@ -25,9 +25,9 @@ export default function GameInfoCard({ gameData, storeData }: any) {
           <CardContent className="space-y-2">
             <div className="flex justify-between">
               <span className="opacity-50 mr-5">
-                {gameData.publishers.length > 1 ? "Developers:" : "Developer:"}
+                {gameData.developers.length > 1 ? "Developers:" : "Developer:"}
               </span>{" "}
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2 justify-end">
                 {gameData.developers.map((developer: string, idx: number) => (
                   <p key={idx}>
                     {developer}
@@ -43,7 +43,7 @@ export default function GameInfoCard({ gameData, storeData }: any) {
                 {" "}
                 {gameData.publishers.length > 1 ? "Publishers:" : "Publisher:"}
               </span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2 justify-end">
                 {gameData.publishers.map((publisher: string, idx: number) => (
                   <p key={idx} className="flex">
                     {publisher}
@@ -57,7 +57,7 @@ export default function GameInfoCard({ gameData, storeData }: any) {
             <div className="flex justify-between">
               <span className="opacity-50 mr-5">Steam Rating:</span>
               <div className="flex flex-col items-end">
-                {gameData.review_descriptor_summary.length > 1 ? (
+                {gameData?.review_descriptor_summary.length > 1 ? (
                   <p>{gameData?.review_descriptor_summary[1]}</p>
                 ) : (
                   <p>{gameData?.review_descriptor_summary[0]}</p>
@@ -74,11 +74,10 @@ export default function GameInfoCard({ gameData, storeData }: any) {
                 </>
               )}
             </div>
-            <div className="flex flex-wrap gap-1 ">
+            <div className="flex flex-wrap gap-1">
               <span className="opacity-50 mr-5">Tags:</span>
-
               {gameData?.tags.map((tag: string, idx: number) => (
-                <span key={idx} className="bg-pink-500 p-1">
+                <span key={idx} className="bg-pink-500 p-1 text-xs">
                   {tag}
                 </span>
               ))}
@@ -87,7 +86,7 @@ export default function GameInfoCard({ gameData, storeData }: any) {
               <span className="opacity-50 mr-5">Features:</span>
 
               {gameData?.game_features.map((feature: string, idx: number) => (
-                <span key={idx} className="bg-muted p-1">
+                <span key={idx} className="bg-muted p-1 text-xs">
                   {feature}
                 </span>
               ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ShowMoreButton from "./ShowMoreButton";
 import ScreenShotCard from "./cards/ScreenShotCard";
 import { Card } from "./ui/card";

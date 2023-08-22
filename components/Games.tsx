@@ -62,17 +62,6 @@ const Games = ({ games, categories }: GamesProps) => {
   let pageNumber = +offset / 20 + 1;
   let gameLength = games.length;
 
-  useEffect(() => {
-    const [min, max] = debouncedRating;
-    startTransition(() => {
-      router.push(
-        `${pathname}?${createQueryString({
-          ratings_range: `${min},${max}`,
-        })}`
-      );
-    });
-  }, [debouncedRating]);
-
   const createQueryString = useCallback(
     (params: Record<string, string | number | null>) => {
       const newSearchParams = new URLSearchParams(searchParams?.toString());
@@ -91,6 +80,17 @@ const Games = ({ games, categories }: GamesProps) => {
   );
 
   useEffect(() => {
+    const [min, max] = debouncedRating;
+    startTransition(() => {
+      router.push(
+        `${pathname}?${createQueryString({
+          ratings_range: `${min},${max}`,
+        })}`
+      );
+    });
+  }, [debouncedRating, router]);
+
+  useEffect(() => {
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
@@ -104,137 +104,158 @@ const Games = ({ games, categories }: GamesProps) => {
 
   return (
     <div className="flex flex-col space-y-6">
-      <div className="flex items-center space-x-2">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button aria-label="filter games" size="sm" disabled={isPending}>
-              Filter
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="flex flex-col justify-around border-l-primary h-full">
-            <SheetHeader>
-              <SheetTitle>Filters</SheetTitle>
-            </SheetHeader>
-            <Separator className="bg-primary" />
-            <div className="flex flex-1 flex-col gap-5 px-1">
-              <div className="space-y-4">
-                <h3 className="text-sm font-medium tarcking-wide text-foreground">
-                  Ratings Range (0 - 100)
-                </h3>
-                <Slider
-                  variant="range"
-                  thickness="thin"
-                  defaultValue={[0, 100]}
-                  max={100}
-                  min={0}
-                  step={1}
-                  value={ratingsRange}
-                  onValueChange={(value: typeof ratingsRange) =>
-                    setRatingsRange(value)
-                  }
-                />
-                <div className="flex items-center space-x-4">
-                  <Input
-                    type="number"
-                    inputMode="numeric"
-                    min={0}
-                    max={ratingsRange[1]}
-                    value={ratingsRange[0]}
-                    className="h-9 border-primary"
-                    onChange={(e) => {
-                      const value = Number(e.target.value);
-                      setRatingsRange([value, ratingsRange[1]]);
-                    }}
-                  />
-                  <span className="text-muted-foreground">-</span>
-                  <Input
-                    type="number"
-                    inputMode="numeric"
-                    min={ratingsRange[0]}
-                    max={100}
-                    value={ratingsRange[1]}
-                    className="h-9 border-primary"
-                    onChange={(e) => {
-                      const value = Number(e.target.value);
-                      setRatingsRange([ratingsRange[0], value]);
-                    }}
-                  />
-                </div>
-              </div>
-              {categories?.length ? (
-                <div className="space-y-4">
-                  <h3 className="text-sm font-medium tracking-wide text-foreground">
-                    Categories
-                  </h3>
-                  <MultiSelectFilter
-                    placeholder="Filter by categories"
-                    selected={selectedCategories}
-                    setSelected={setSelectedCategories}
-                    options={categories.map((category: any) => ({
-                      label: category.title,
-                      value: category.id,
-                    }))}
-                  />
-                </div>
-              ) : null}
-            </div>
-            <div className="space-y-2">
+      <div className="flex items-center space-x-2 justify-between">
+        <div className="flex gap-5">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button aria-label="filter games" size="sm" disabled={isPending}>
+                Filter
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="flex flex-col justify-around border-l-primary h-full">
+              <SheetHeader>
+                <SheetTitle>Filters</SheetTitle>
+              </SheetHeader>
               <Separator className="bg-primary" />
-              <SheetFooter>
-                <Button
-                  aria-label="Clear filters"
-                  size="sm"
-                  className="w-full"
+              <div className="flex flex-1 flex-col gap-5 px-1">
+                <div className="space-y-4">
+                  <h3 className="text-sm font-medium tarcking-wide text-foreground">
+                    Ratings Range (0 - 100)
+                  </h3>
+                  <Slider
+                    variant="range"
+                    thickness="thin"
+                    defaultValue={[0, 100]}
+                    max={100}
+                    min={0}
+                    step={1}
+                    value={ratingsRange}
+                    onValueChange={(value: typeof ratingsRange) =>
+                      setRatingsRange(value)
+                    }
+                  />
+                  <div className="flex items-center space-x-4">
+                    <Input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      max={ratingsRange[1]}
+                      value={ratingsRange[0]}
+                      className="h-9 border-primary"
+                      onChange={(e) => {
+                        const value = Number(e.target.value);
+                        setRatingsRange([value, ratingsRange[1]]);
+                      }}
+                    />
+                    <span className="text-muted-foreground">-</span>
+                    <Input
+                      type="number"
+                      inputMode="numeric"
+                      min={ratingsRange[0]}
+                      max={100}
+                      value={ratingsRange[1]}
+                      className="h-9 border-primary"
+                      onChange={(e) => {
+                        const value = Number(e.target.value);
+                        setRatingsRange([ratingsRange[0], value]);
+                      }}
+                    />
+                  </div>
+                </div>
+                {categories?.length ? (
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-medium tracking-wide text-foreground">
+                      Categories
+                    </h3>
+                    <MultiSelectFilter
+                      placeholder="Filter by categories"
+                      selected={selectedCategories}
+                      setSelected={setSelectedCategories}
+                      options={categories.map((category: any) => ({
+                        label: category.title,
+                        value: category.id,
+                      }))}
+                    />
+                  </div>
+                ) : null}
+              </div>
+              <div className="space-y-2">
+                <Separator className="bg-primary" />
+                <SheetFooter>
+                  <Button
+                    aria-label="Clear filters"
+                    size="sm"
+                    className="w-full"
+                    onClick={() => {
+                      startTransition(() => {
+                        router.push(
+                          `${pathname}?${createQueryString({
+                            ratings_range: "0,100",
+                            categories: "false",
+                          })}`
+                        );
+
+                        setRatingsRange([0, 100]);
+                        setSelectedCategories(null);
+                      });
+                    }}
+                    disabled={isPending}
+                  >
+                    Clear Filters
+                  </Button>
+                </SheetFooter>
+              </div>
+            </SheetContent>
+          </Sheet>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button aria-label="Sort Games" size="sm" disabled={isPending}>
+                Sort
+                <Icons.chevronDown
+                  className="ml-2 w-4 h-4"
+                  aria-hidden="true"
+                />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48">
+              <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {sortOptions.map((option) => (
+                <DropdownMenuItem
+                  key={option.label}
+                  className={cn(option.value === sort && "font-bold")}
                   onClick={() => {
                     startTransition(() => {
                       router.push(
                         `${pathname}?${createQueryString({
-                          ratings_range: "0,100",
-                          categories: "false",
+                          sort: option.value,
                         })}`
                       );
-
-                      setRatingsRange([0, 100]);
-                      setSelectedCategories(null);
                     });
                   }}
-                  disabled={isPending}
                 >
-                  Clear Filters
-                </Button>
-              </SheetFooter>
-            </div>
-          </SheetContent>
-        </Sheet>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button aria-label="Sort Games" size="sm" disabled={isPending}>
-              Sort
-              <Icons.chevronDown className="ml-2 w-4 h-4" aria-hidden="true" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-48">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {sortOptions.map((option) => (
-              <DropdownMenuItem
-                key={option.label}
-                className={cn(option.value === sort && "font-bold")}
-                onClick={() => {
-                  startTransition(() => {
-                    router.push(
-                      `${pathname}?${createQueryString({
-                        sort: option.value,
-                      })}`
-                    );
-                  });
-                }}
-              >
-                {option.label}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                  {option.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <div>
+          {games.length ? (
+            <PaginationButton
+              startTransition={startTransition}
+              isPending={isPending}
+              pathname={pathname}
+              router={router}
+              createQueryString={createQueryString}
+              sort={sort}
+              pageNumber={pageNumber}
+              offset={+offset}
+              gamesLength={gameLength}
+              page={page}
+            />
+          ) : null}
+        </div>
       </div>
       {!isPending && !games.length ? (
         <div className="mx-auto flex max-w-xs h-full items-start flex-col justify-start space-y-1.5">

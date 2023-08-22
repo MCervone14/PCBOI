@@ -11,9 +11,14 @@ const fetchGames = async (
     sort,
     ratings_range,
     categories,
-  }: { offset: number; sort: string; ratings_range: string; categories: string }
+  }: {
+    offset: number;
+    sort: string;
+    ratings_range: string;
+    categories: string;
+  }
 ) => {
-  const ratingsRangeValues = ratings_range.split(",");
+  const ratingsRangeValues = ratings_range?.split(",");
   const minRating = ratingsRangeValues[0];
   const maxRating = ratingsRangeValues[1];
   let bodyString = "";
@@ -46,7 +51,6 @@ const fetchGames = async (
 };
 
 const GamesPage = async ({ searchParams }: any) => {
-  console.log(searchParams);
   const games = await fetchGames("games", {
     offset: Number(searchParams.offset) || 0,
     sort: searchParams.sort || "sort name asc",
@@ -57,7 +61,7 @@ const GamesPage = async ({ searchParams }: any) => {
   return (
     <Shell className="space-y-20">
       <TitleHeader
-        title="Popular PC Games"
+        title="All PC Games"
         description="Explore the PC gaming world!"
         size="sm"
       />

@@ -39,11 +39,11 @@ const LanguagesChartCard = ({ languages }: LanguagesChartCardProps) => {
     >
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className="p-0">
             <TableHead className="w-[100px]">Language</TableHead>
-            <TableHead>Interface</TableHead>
-            <TableHead>FullAudio</TableHead>
-            <TableHead>Subtitles</TableHead>
+            <TableHead className="p-0 text-center">Interface</TableHead>
+            <TableHead className="p-0 text-center">FullAudio</TableHead>
+            <TableHead className="p-0 text-center">Subtitles</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

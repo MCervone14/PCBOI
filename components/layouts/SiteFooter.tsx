@@ -28,9 +28,9 @@ const Caesar = Caesar_Dressing({
 
 const SiteFooter = () => {
   return (
-    <footer className="w-full  bg-background border-t border-primary ">
-      <div className="container flex flex-col gap-x-5 items-center justify-center space-y-1 py-5 md:h-16 md:flex-row md:py-0">
-        <div className="text-center text-base text-primary ">
+    <footer className="w-full bg-background border-t border-primary">
+      <div className="">
+        <div className="text-center text-primary py-3">
           {links.map((link, idx) => (
             <Link
               target="_blank"
@@ -43,14 +43,14 @@ const SiteFooter = () => {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col items-center justify-between sm:flex-row">
+        <div className="flex justify-center items-center">
           <Link
             href="/"
             className={`text-3xl ${Caesar.className} hover:text-yblue mr-4`}
           >
             PCBOI
           </Link>
-          <p className="mt-4 text-sm text-primary sm:mt-0 opacity-50">© 2023</p>
+          <p className="text-sm text-primary opacity-50">© 2023</p>
         </div>
       </div>
     </footer>

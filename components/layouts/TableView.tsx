@@ -20,10 +20,12 @@ const TableView = ({ title, category, released }: any) => {
           <TableHead className="w-full flex-1 text-primary p-0 text-center hidden place-content-center sm:inline-grid  lg:hidden xl:inline-grid">
             Title
           </TableHead>
-          <TableHead className="w-full flex-1 text-primary p-0 text-center hidden sm:inline-grid place-content-center">
-            {" "}
-            Release Date
-          </TableHead>
+          {!released && (
+            <TableHead className="w-full flex-1 text-primary p-0 text-center hidden sm:inline-grid place-content-center">
+              {" "}
+              Release Date
+            </TableHead>
+          )}
 
           {released && (
             <TableHead className="w-full flex-1 text-primary p-0 text-center hidden sm:inline-grid place-content-center">

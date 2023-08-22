@@ -1,18 +1,6 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
-import { Badge } from "../ui/badge";
-import { getRatingFace } from "@/lib/RatingHelper";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
 import dayjs from "dayjs";
 import Link from "next/link";
 

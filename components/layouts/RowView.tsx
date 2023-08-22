@@ -30,21 +30,25 @@ const RowView = ({ game, released }: any) => {
 
   return (
     <TableRow className="border w-full flex flex-col items-center sm:flex-row">
-      <TableCell className="p-0 py-1 w-full min-w-[149.5px] ">
+      <TableCell className="p-0 py-1 w-full min-w-[157px] pl-1">
         <Link href={`game/${appId}`}>
           <Image
             src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/capsule_231x87.jpg`}
             alt={game.name}
-            width={155}
+            width={157}
             height={60}
-            className="object-cover rounded-md cursor-pointer border hover:border-yblue mx-auto pl-1 max-w-[155px] max-h-[60px]"
+            className="object-cover rounded-md cursor-pointer mx-auto border hover:border-yblue max-w-[157px] max-h-[60px]"
           />
         </Link>
       </TableCell>
       <TableCell className="p-0 hover:text-pink-500 pl-3 sm:w-full lg:hidden xl:inline-grid">
         <Link href={`game/${appId}`}>{game.name}</Link>
       </TableCell>
-      <TableCell className="p-0 text-center sm:w-full">{releaseDate}</TableCell>
+      {!released && (
+        <TableCell className="p-0 text-center sm:w-full">
+          {releaseDate}
+        </TableCell>
+      )}
       {released && (
         <TableCell className="p-0 text-center flex items-center justify-center h-full gap-1 sm:w-full">
           {game.total_rating && Number(Math.floor(game.total_rating))}
@@ -57,7 +61,6 @@ const RowView = ({ game, released }: any) => {
           target="_blank"
           className="text-primary hover:text-pink-500"
         >
-          {console.log(game.priceData?.cheapest)}
           {(game.priceData?.cheapest && `$${game.priceData.cheapest}`) || "--"}
         </Link>
       </TableCell>

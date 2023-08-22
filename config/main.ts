@@ -15,17 +15,12 @@ export const mainConfig = {
         {
           title: "All Games",
           href: "/games",
-          description: "Catalog of the most popular games. A-Z",
+          description: "Catalog of all games.",
         },
         {
           title: "New Games",
           href: "/games/new-games",
-          description: "Top new releases from the last 6 months",
-        },
-        {
-          title: "Top Games",
-          href: "/games/top-100",
-          description: "Top games from 2009 onwards",
+          description: "Catalog of newest releases",
         },
       ],
     },

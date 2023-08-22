@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { User } from "@clerk/nextjs/dist/types/server";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +19,8 @@ import MainNav from "@/components/layouts/MainNav";
 import { mainConfig } from "@/config/main";
 import MobileNav from "./MobileNav";
 import dashboardConfig from "@/config/dashboard";
+import GameSearch from "../search/GameSearch";
+import SearchBox from "../search/SearchBox";
 
 const userProfileLabels = [
   {
@@ -64,6 +66,7 @@ const SiteNav = async ({ user }: SiteHeaderProps) => {
           sidebarNavItems={dashboardConfig.sidebarNav}
         />
         <div className="flex flex-1 items-center justify-end space-x-4">
+          <SearchBox />
           <nav className="flex items-center space-x-2">
             {user ? (
               <DropdownMenu>

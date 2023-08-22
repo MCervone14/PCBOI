@@ -16,6 +16,8 @@ import { AwesomeIndieGames } from "./actions/AwesomeIndieGames";
 import { EndlessHours } from "./actions/EndlessHours";
 import { ComingSoon } from "./actions/ComingSoon";
 import { Icons } from "@/components/Icons";
+import { EpicFreeGames } from "./actions/EpicFreeGames";
+import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
 
 const fetchHomepageLists = async (
   endpoint: string,
@@ -24,12 +26,19 @@ const fetchHomepageLists = async (
   const url = `${process.env.API_URL_BASE}/${endpoint}/`;
   const arrOfGames = [];
 
+  //Getting Game info for each table
   const Popular_New_Releases = await PopularNewReleases(url);
   const Epic_Releases_of_2023 = await EpicReleasesOf2023(url);
   const Hidden_Gems = await HiddenGems(url);
   const Awesome_Indie_Games = await AwesomeIndieGames(url);
   const Endless_Hours = await EndlessHours(url);
   const Coming_Soon = await ComingSoon(url);
+
+  // Getting the Epic Free Games info
+  const EpicData = await EpicFreeGames(
+    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=en-US&country=US&allowCountries=US"
+  );
+
   arrOfGames.push(
     Popular_New_Releases,
     Epic_Releases_of_2023,
@@ -67,6 +76,7 @@ const fetchHomepageLists = async (
     F_Awesome_Indie_Games,
     F_Endless_Hours,
     F_Coming_Soon,
+    EpicData,
   };
 };
 
@@ -78,6 +88,7 @@ export default async function Home() {
     F_Endless_Hours,
     F_Epic_Releases_of_2023,
     F_Hidden_Gems,
+    EpicData,
   } = await fetchHomepageLists("games", {
     offset: 0,
   });
@@ -176,9 +187,15 @@ export default async function Home() {
               </div>
             </div>
           </div>
+          <div>
+            <EpicFreeGamesTable
+              epicData={EpicData.data.Catalog.searchStore.elements}
+              title="Epic's Free Games"
+            />
+          </div>
           <div className="flex flex-col items-center mx-auto w-full mb-8">
-            <div className="bg-pink-700 w-full rounded-lg shadow-2xl border border-primary">
-              <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2 p-2.5">
+            <div className="bg-black/80 w-full rounded-lg shadow-2xl border border-primary">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-2 p-5">
                 {tableCategories.map((category, idx) => (
                   <TableView
                     key={idx}

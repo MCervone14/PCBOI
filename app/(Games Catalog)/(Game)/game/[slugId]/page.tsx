@@ -84,15 +84,15 @@ const GamePage = async ({ params }: any) => {
             />
           </div>
         </div>
-        <div className="grids-cols-1 mx-auto">
+        <div className="grids-cols-1">
           <Image
             src={gameData.header_image!}
             alt={gameData?.title}
             width={400}
             height={400}
-            className="object-cover mb-5 hidden md:block"
+            className="object-cover mx-auto mb-5 hidden md:block"
           />
-          <div className="flex flex-col justify-center mb-5">
+          <div className="flex flex-col justify-center items-center mb-5">
             <GameInfoCard gameData={gameData} storeData={storeData} />
             {gameData.movies.length >= 1 && (
               <MediaWrapper movies={gameData?.movies} />

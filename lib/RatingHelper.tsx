@@ -22,7 +22,7 @@ export function getRatingFace(rating: number) {
   } else if (rating < 80) {
     return (
       <Image
-        src="/ratings-icons/line.png"
+        src="/ratings-icons/h-line2.png"
         alt="neutral rating"
         width={20}
         height={20}
