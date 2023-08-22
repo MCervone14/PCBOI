@@ -13,7 +13,7 @@ const SearchBox = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const debouncedQuery = useDebounce(query, 400);
+  const debouncedQuery = useDebounce(query, 300);
   const [data, setData] = useState<any[] | null>(null);
   const [isPending, startTransition] = useTransition();
   const [isEmpty, setIsEmpty] = useState(false);
@@ -30,7 +30,6 @@ const SearchBox = () => {
           setIsOpen(true);
         } else {
           setData(data);
-          setIsOpen(true);
           setIsEmpty(false);
         }
       });
@@ -56,7 +55,9 @@ const SearchBox = () => {
             setQuery("");
             setData(null);
             setIsOpen(false);
+            setIsEmpty(false);
           } else {
+            setIsOpen(true);
             setQuery(e.target.value);
           }
         }}
@@ -65,6 +66,7 @@ const SearchBox = () => {
             setQuery("");
             setData(null);
             setIsOpen(false);
+            setIsEmpty(false);
           } else {
             setIsOpen(true);
           }
@@ -77,12 +79,12 @@ const SearchBox = () => {
           display: isOpen ? "block" : "none",
         }}
       >
-        {isEmpty && (
+        {isEmpty && !isPending && (
           <div className="text-center text-yellow-500">
             No games were found. Please try a different search.
           </div>
         )}
-        {isPending ? (
+        {isPending || (!data && !isEmpty) ? (
           <div className="space-y-1 overflow-hidden px-1 py-2">
             <Skeleton className="h-4 w-10 rounded" />
             <Skeleton className="h-8 rounded-sm" />

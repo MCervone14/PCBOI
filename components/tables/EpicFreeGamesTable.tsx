@@ -46,7 +46,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
               (image: any) => image.type === "Thumbnail"
             );
 
-            if (game.promotions) {
+            if (game.promotions && game.offerType === "BASE_GAME") {
               return (
                 <TableRow
                   className="flex flex-col border-none"
