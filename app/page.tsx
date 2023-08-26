@@ -5,7 +5,6 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { Suspense } from "react";
 import LoadingHomePage from "@/components/layouts/LoadingHomePage";
-import starfield from "/public/starfield.jpg";
 import TableView from "@/components/layouts/TableView";
 import { PopularNewReleases } from "./actions/PopularNewReleases";
 import { EpicReleasesOf2023 } from "./actions/EpicReleasesOf2023";
@@ -134,12 +133,12 @@ export default async function Home() {
             <div className="lg:w-3/4 relative">
               <AspectRatio ratio={19.5 / 9}>
                 <Image
-                  src={starfield}
+                  src="starfield.jpg"
                   alt="Photo"
                   fill
                   className=" rounded-b-none rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none object-cover mx-auto z-[0]"
                   placeholder="blur"
-                  priority={true}
+                  blurDataURL="starfield.jpg"
                 />
               </AspectRatio>
               <Button

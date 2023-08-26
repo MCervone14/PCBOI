@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { User } from "@clerk/nextjs/dist/types/server";
+// import type { User } from "@clerk/nextjs/dist/types/server";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,6 @@ import MainNav from "@/components/layouts/MainNav";
 import { mainConfig } from "@/config/main";
 import MobileNav from "./MobileNav";
 import dashboardConfig from "@/config/dashboard";
-import GameSearch from "../search/GameSearch";
 import SearchBox from "../search/SearchBox";
 
 const userProfileLabels = [
@@ -52,11 +51,7 @@ const userLogoutLabel = [
   },
 ];
 
-interface SiteHeaderProps {
-  user: User | null;
-}
-
-const SiteNav = async ({ user }: SiteHeaderProps) => {
+const SiteNav = () => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-primary bg-background">
       <div className="container flex h-16 items-center">
@@ -67,7 +62,7 @@ const SiteNav = async ({ user }: SiteHeaderProps) => {
         />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <SearchBox />
-          <nav className="flex items-center space-x-2">
+          {/* <nav className="flex items-center space-x-2">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -129,7 +124,7 @@ const SiteNav = async ({ user }: SiteHeaderProps) => {
             //   </div>
             // </Link>
             null}
-          </nav>
+          </nav> */}
         </div>
       </div>
     </header>

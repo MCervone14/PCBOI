@@ -15,6 +15,7 @@ const nextConfig = {
       "cheapshark.com",
       "cdn1.epicgames.com",
     ],
+    unoptimized: true,
   },
   experimental: {
     appDir: true,

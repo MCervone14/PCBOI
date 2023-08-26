@@ -20,7 +20,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
           </TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody className="gap-5 mt-2 grid grid-cols-2 lg:grid-cols-3 place-items-center mx-auto">
+      <TableBody className="gap-20 mt-2 flex flex-wrap justify-evenly">
         {epicData
           .sort((a: any, b: any) => {
             const aDiscountPrice = a.price?.totalPrice.discountPrice;
@@ -57,13 +57,17 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                       href={`https://store.epicgames.com/en-US/p/${game.productSlug}`}
                       target="_blank"
                       className="hover:opacity-75"
+                      as={"image"}
                     >
                       <Image
                         src={thumbnail?.url}
                         alt={game.title}
                         width={330}
                         height={440}
-                        className="rounded-t-md "
+                        className="rounded-t-md"
+                        placeholder="blur"
+                        blurDataURL={thumbnail?.url}
+                        priority={false}
                       />
                       {game.promotions.promotionalOffers.length > 0 ? (
                         <span className="h-6 bg-pink-700 rounded-b-md flex items-center justify-center">

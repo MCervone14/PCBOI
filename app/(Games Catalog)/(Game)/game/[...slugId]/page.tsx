@@ -31,12 +31,12 @@ const getStores = async (SteamAppID: string) => {
     const gameDeals = await fetch(gameDealsUrl).then((res) => res.json());
 
     const dataWithDeals = data.map((store: any) => {
-      const storeDeals = gameDeals.filter(
+      const storeDeals = gameDeals?.filter(
         (deal: any) => deal.storeID === store.storeID
       );
       return {
         ...store,
-        deals: storeDeals,
+        deals: storeDeals || [],
       };
     });
 
@@ -48,8 +48,8 @@ const getStores = async (SteamAppID: string) => {
 };
 
 const GamePage = async ({ params }: any) => {
-  const gameData = await fetchGame(params.slugId);
-  const storeData = await getStores(params.slugId);
+  const gameData = await fetchGame(params.slugId[0]);
+  const storeData = await getStores(params.slugId[0]);
 
   if (!gameData)
     return (
@@ -88,8 +88,8 @@ const GamePage = async ({ params }: any) => {
           <Image
             src={gameData.header_image!}
             alt={gameData?.title}
-            width={400}
-            height={400}
+            width={460}
+            height={215}
             className="object-cover mx-auto mb-5 hidden md:block"
           />
           <div className="flex flex-col justify-center items-center mb-5">

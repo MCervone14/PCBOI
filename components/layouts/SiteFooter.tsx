@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { Caesar_Dressing } from "next/font/google";
-
 const links = [
   {
     title: "CheapShark Pricing Api",
@@ -19,12 +17,6 @@ const links = [
     ariaLabel: "Steam Api",
   },
 ];
-
-const Caesar = Caesar_Dressing({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 const SiteFooter = () => {
   return (
@@ -44,13 +36,10 @@ const SiteFooter = () => {
           ))}
         </div>
         <div className="flex justify-center items-center">
-          <Link
-            href="/"
-            className={`text-3xl ${Caesar.className} hover:text-yblue mr-4`}
-          >
+          <Link href="/" className={`text-3xl hover:text-yblue mr-4`}>
             PCBOI
           </Link>
-          <p className="text-sm text-primary opacity-50">© 2023</p>
+          <p className="text-sm text-primary opacity-95">© 2023</p>
         </div>
       </div>
     </footer>

@@ -23,7 +23,7 @@ const FeaturedCard = ({ game }: any) => {
 
   return (
     <Link
-      href={`/game/${appId}`}
+      href={`/game/${appId}/${game.slug}`}
       aria-label={`View ${game.name} details`}
       className="group relative"
       prefetch={false}
@@ -36,7 +36,8 @@ const FeaturedCard = ({ game }: any) => {
             width={264}
             height={350}
             className="min-w-[264px] min-h-[350px]"
-            loading="eager"
+            placeholder="blur"
+            blurDataURL={`https:${IGDBUrl}`}
           />
         </CardHeader>
       </div>

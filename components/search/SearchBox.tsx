@@ -7,7 +7,6 @@ import { Icons } from "../Icons";
 import { filterGamesBySearch } from "@/app/actions/Game";
 import { Input } from "../ui/input";
 import Image from "next/image";
-import { set } from "zod";
 
 const SearchBox = () => {
   const router = useRouter();
@@ -74,7 +73,7 @@ const SearchBox = () => {
         type="search"
       />
       <div
-        className="absolute right-0 mt-1 w-full md:w-[500px] p-2 bg-secondary text-white shadow-lg"
+        className="absolute flex items-center right-0 mt-1 w-[300px] md:w-[500px] p-2 bg-secondary text-white shadow-lg"
         style={{
           display: isOpen ? "block" : "none",
         }}
@@ -113,8 +112,8 @@ const SearchBox = () => {
                   width={116}
                   height={65}
                 />
-                <div className=" p-2  h-8">
-                  <span className="capitalize line-clamp-1">{item.title}</span>
+                <div className=" p-2 h-8 flex items-center">
+                  <span className="capitalize text-wrap">{item.title}</span>
                 </div>
               </div>
             );

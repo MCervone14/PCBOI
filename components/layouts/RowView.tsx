@@ -27,17 +27,17 @@ const RowView = ({ game, released }: any) => {
     .unix(game.first_release_date)
     .format("MMM DD, YYYY");
   const rating = getRatingFace(Math.floor(game.total_rating));
-
   return (
     <TableRow className="border w-full flex flex-col items-center sm:flex-row">
-      <TableCell className="p-0 py-1 w-full min-w-[157px] pl-1">
-        <Link href={`game/${appId}`}>
+      <TableCell className="p-0 py-1 w-full min-w-[150px] pl-1">
+        <Link href={`game/${appId}/${game.slug}`} prefetch={false}>
           <Image
+            unoptimized={true}
             src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/capsule_231x87.jpg`}
             alt={game.name}
-            width={157}
-            height={60}
-            className="object-cover rounded-md cursor-pointer mx-auto border hover:border-yblue max-w-[157px] max-h-[60px]"
+            width={150}
+            height={65}
+            className="object-cover rounded-md cursor-pointer mx-auto border hover:border-yblue max-w-[150px] max-h-[65px]"
           />
         </Link>
       </TableCell>
@@ -58,6 +58,7 @@ const RowView = ({ game, released }: any) => {
       <TableCell className="text-center p-0 opacity-75 sm:w-full">
         <Link
           href={`https://www.cheapshark.com/redirect?dealID=${game.priceData?.cheapestDealID}`}
+          prefetch={false}
           target="_blank"
           className="text-primary hover:text-pink-500"
         >

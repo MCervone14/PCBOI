@@ -113,7 +113,9 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
                   </AccordionContent>
                 </AccordionItem>
               ))}
-              <AccordionItem value="sidebar">
+              {
+                // Don't need right now, but will add later.
+                /* <AccordionItem value="sidebar">
                 <AccordionTrigger className="text-sm">
                   Sidebar Menu
                 </AccordionTrigger>
@@ -141,7 +143,8 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
                     )}
                   </div>
                 </AccordionContent>
-              </AccordionItem>
+              </AccordionItem> */
+              }
             </Accordion>
           </div>
         </ScrollArea>

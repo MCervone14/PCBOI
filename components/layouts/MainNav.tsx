@@ -12,17 +12,10 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import type { MainNavItem } from "@/types";
-import { Caesar_Dressing } from "next/font/google";
 
 interface MainNavProps {
   items?: MainNavItem[];
 }
-
-const Caesar = Caesar_Dressing({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 const MainNav = ({ items }: MainNavProps) => {
   return (
@@ -30,7 +23,7 @@ const MainNav = ({ items }: MainNavProps) => {
       <Link
         aria-label="Home"
         href={"/"}
-        className={`${Caesar.className} hidden lg:flex hover:text-yblue text-3xl`}
+        className={`hidden lg:flex hover:text-yblue text-3xl`}
       >
         PCBOI
       </Link>
