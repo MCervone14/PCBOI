@@ -4,6 +4,12 @@ import TitleHeader from "@/components/TitleHeader";
 import { category } from "@/types";
 import React from "react";
 
+export const metadata = {
+  title: "PCBOI  |  New Games",
+  description:
+    "A list of new games coming soon or released in the last 6 months",
+};
+
 const fetchTopReleases = async (
   endpoint: string,
   { offset = 0, sort }: { offset: number; sort: string }
@@ -18,7 +24,7 @@ const fetchTopReleases = async (
       Authorization: `Bearer ${process.env.API_SECRET_TOKEN}`,
     },
     body: `f  id, slug, name, external_games.uid, external_games.category, videos.*, total_rating, total_rating_count, cover.url, release_dates.platform, first_release_date, genres.name; ${sort}; limit 20; offset ${offset};
-    where cover.url != null & total_rating != null & release_dates.platform = (6) & first_release_date > 	1641016800;`,
+    where cover.url != null & total_rating != null & external_games.category = 1 & release_dates.platform = (6) & first_release_date > 	1677650400;`,
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));

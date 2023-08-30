@@ -8,8 +8,6 @@ import LoadingHomePage from "@/components/layouts/LoadingHomePage";
 import TableView from "@/components/layouts/TableView";
 import { PopularNewReleases } from "./actions/PopularNewReleases";
 import { EpicReleasesOf2023 } from "./actions/EpicReleasesOf2023";
-import { getAppIdsWithTitle, mergePriceData } from "@/lib/utils";
-import { getCheapSharkPriceInfo } from "@/app/actions/GetCheapSharkPriceInfo";
 import { HiddenGems } from "./actions/HiddenGems";
 import { AwesomeIndieGames } from "./actions/AwesomeIndieGames";
 import { EndlessHours } from "./actions/EndlessHours";
@@ -17,6 +15,11 @@ import { ComingSoon } from "./actions/ComingSoon";
 import { Icons } from "@/components/Icons";
 import { EpicFreeGames } from "./actions/EpicFreeGames";
 import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
+
+export const metadata = {
+  title: "PCBOI  |  Home",
+  description: "A site for PC game enthusiasts",
+};
 
 const fetchHomepageLists = async (
   endpoint: string,
@@ -47,46 +50,25 @@ const fetchHomepageLists = async (
     Coming_Soon
   );
 
-  const steamAppIDWithTitle = getAppIdsWithTitle(arrOfGames.flat());
-  const CheapSharkPriceInfo = (
-    await getCheapSharkPriceInfo(steamAppIDWithTitle)
-  ).flat();
-
-  const F_Popular_New_Releases = mergePriceData(
-    Popular_New_Releases,
-    CheapSharkPriceInfo
-  );
-  const F_Epic_Releases_of_2023 = mergePriceData(
-    Epic_Releases_of_2023,
-    CheapSharkPriceInfo
-  );
-  const F_Hidden_Gems = mergePriceData(Hidden_Gems, CheapSharkPriceInfo.flat());
-  const F_Awesome_Indie_Games = mergePriceData(
-    Awesome_Indie_Games,
-    CheapSharkPriceInfo
-  );
-  const F_Endless_Hours = mergePriceData(Endless_Hours, CheapSharkPriceInfo);
-  const F_Coming_Soon = mergePriceData(Coming_Soon, CheapSharkPriceInfo);
-
   return {
-    F_Popular_New_Releases,
-    F_Epic_Releases_of_2023,
-    F_Hidden_Gems,
-    F_Awesome_Indie_Games,
-    F_Endless_Hours,
-    F_Coming_Soon,
+    Popular_New_Releases,
+    Epic_Releases_of_2023,
+    Hidden_Gems,
+    Awesome_Indie_Games,
+    Endless_Hours,
+    Coming_Soon,
     EpicData,
   };
 };
 
 export default async function Home() {
   const {
-    F_Popular_New_Releases,
-    F_Awesome_Indie_Games,
-    F_Coming_Soon,
-    F_Endless_Hours,
-    F_Epic_Releases_of_2023,
-    F_Hidden_Gems,
+    Popular_New_Releases,
+    Awesome_Indie_Games,
+    Coming_Soon,
+    Endless_Hours,
+    Epic_Releases_of_2023,
+    Hidden_Gems,
     EpicData,
   } = await fetchHomepageLists("games", {
     offset: 0,
@@ -95,32 +77,32 @@ export default async function Home() {
   const tableCategories = [
     {
       title: "New Releases",
-      category: F_Popular_New_Releases,
+      category: Popular_New_Releases,
       released: true,
     },
     {
       title: "2023 Game Year",
-      category: F_Epic_Releases_of_2023,
+      category: Epic_Releases_of_2023,
       released: true,
     },
     {
       title: "Hidden Gems",
-      category: F_Hidden_Gems,
+      category: Hidden_Gems,
       released: true,
     },
     {
       title: "Indie Games",
-      category: F_Awesome_Indie_Games,
+      category: Awesome_Indie_Games,
       released: true,
     },
     {
       title: "Endless Hours",
-      category: F_Endless_Hours,
+      category: Endless_Hours,
       released: true,
     },
     {
       title: "Coming Soon",
-      category: F_Coming_Soon,
+      category: Coming_Soon,
       released: false,
     },
   ];

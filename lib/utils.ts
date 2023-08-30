@@ -56,3 +56,35 @@ export const mergePriceData = (data: any[], prices: any[]) => {
     }
   });
 };
+
+export const getCategoryName = (id: number) => {
+  switch (id) {
+    case 4:
+      return "Fighting";
+      break;
+    case 5:
+      return "Shooter";
+      break;
+    case 8:
+      return "Platformer";
+      break;
+    case 12:
+      return "Role Playing Game";
+      break;
+    case 13:
+      return "Simulation";
+      break;
+    case 14:
+      return "Sports";
+      break;
+    case 15:
+      return "Strategy";
+      break;
+    case 31:
+      return "Adventure";
+      break;
+    case 32:
+      return "Indie";
+      break;
+  }
+};

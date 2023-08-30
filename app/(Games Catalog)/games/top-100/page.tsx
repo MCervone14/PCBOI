@@ -18,7 +18,7 @@ const fetchTopRatedReleases = async (
       Authorization: `Bearer ${process.env.API_SECRET_TOKEN}`,
     },
     body: `f  id, slug, name, total_rating, total_rating_count, external_games.uid, external_games.category, cover.url, release_dates.platform, first_release_date, genres.name; ${sort}; limit 100; offset ${offset};
-    where cover.url != null & total_rating != null & total_rating_count > 200 & release_dates.platform = (6);`,
+    where cover.url != null & total_rating != null & total_rating_count > 200 & external_games.category = 1 & release_dates.platform = (6);`,
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));

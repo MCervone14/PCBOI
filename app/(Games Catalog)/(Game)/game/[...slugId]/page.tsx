@@ -1,12 +1,12 @@
 import Image from "next/image";
 import GameInfoCard from "@/components/cards/GameInfoCard";
 import Description from "@/components/Description";
-
 import LanguagesChartCard from "@/components/cards/LanguagesChartCard";
 import MediaWrapper from "@/components/MediaWrapper";
 import ScreenShotWrapper from "@/components/ScreenShotWrapper";
 import prisma from "@/lib/prisma";
 import ReviewCardWrapper from "@/components/ReviewCardWrapper";
+import { ResolvingMetadata } from "next";
 
 const fetchGame = async (id: string) => {
   try {
@@ -15,12 +15,30 @@ const fetchGame = async (id: string) => {
         appid: id,
       },
     });
+
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
 };
+
+type MetaProps = {
+  params: {
+    slugId: string[];
+  };
+};
+
+export async function generateMetadata({ params }: MetaProps) {
+  const id = params.slugId[0];
+
+  const gameData = await fetchGame(id as string);
+  return {
+    title: `PCBOI | ${gameData?.title}`,
+    description: gameData?.game_description,
+    image: gameData?.header_image,
+  };
+}
 
 const getStores = async (SteamAppID: string) => {
   try {
@@ -31,6 +49,7 @@ const getStores = async (SteamAppID: string) => {
     const gameDeals = await fetch(gameDealsUrl).then((res) => res.json());
 
     const dataWithDeals = data.map((store: any) => {
+      if (!gameDeals) return store;
       const storeDeals = gameDeals?.filter(
         (deal: any) => deal.storeID === store.storeID
       );
@@ -53,10 +72,12 @@ const GamePage = async ({ params }: any) => {
 
   if (!gameData)
     return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        <h1 className="text-4xl">
-          Sorry! This game was not found. Please try another game.
-        </h1>
+      <div className="w-screen h-screen flex flex-col justify-center items-center space-y-10">
+        <p className="text-4xl">Sorry! This game was not found.</p>
+        <small>
+          Please note that new games are being added to the database daily.
+          Check back in a few days!
+        </small>
       </div>
     );
 
@@ -125,7 +146,7 @@ const GamePage = async ({ params }: any) => {
                 .slice(Math.ceil(gameData.reviews.length / 2))}
             </div>
           ) : (
-            <h3>No Steams Reviews at this time.</h3>
+            <h3 className="text-2xl">No Steams Reviews at this time.</h3>
           )}
         </div>
       </div>

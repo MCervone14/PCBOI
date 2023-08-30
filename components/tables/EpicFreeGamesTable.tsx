@@ -41,9 +41,10 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
             // Sort based on discount price (ascending order)
             return aDiscountPrice - bDiscountPrice;
           })
+          .slice(0, 4)
           .map((game: any) => {
-            const thumbnail = game.keyImages.find(
-              (image: any) => image.type === "Thumbnail"
+            const wideImage = game.keyImages.find(
+              (image: any) => image.type === "OfferImageWide"
             );
 
             if (game.promotions && game.offerType === "BASE_GAME") {
@@ -56,17 +57,16 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                     <Link
                       href={`https://store.epicgames.com/en-US/p/${game.productSlug}`}
                       target="_blank"
-                      className="hover:opacity-75"
-                      as={"image"}
+                      className="hover:bg-white hover:opacity-90"
                     >
                       <Image
-                        src={thumbnail?.url}
+                        src={wideImage?.url}
                         alt={game.title}
-                        width={330}
-                        height={440}
+                        width={600}
+                        height={300}
                         className="rounded-t-md"
                         placeholder="blur"
-                        blurDataURL={thumbnail?.url}
+                        blurDataURL={wideImage?.url}
                         priority={false}
                       />
                       {game.promotions.promotionalOffers.length > 0 ? (
@@ -90,7 +90,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                         ${dayjs(
                           game.promotions.promotionalOffers[0]
                             ?.promotionalOffers[0]?.endDate
-                        ).format("MMM D, h:mm A")}`
+                        ).format("MMM D")}`
                       : `Free ${dayjs(
                           game.promotions.upcomingPromotionalOffers[0]
                             ?.promotionalOffers[0]?.startDate
@@ -98,7 +98,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                             ${dayjs(
                               game.promotions.upcomingPromotionalOffers[0]
                                 ?.promotionalOffers[0]?.endDate
-                            ).format("MMM D, h:mm A")}`}
+                            ).format("MMM D")}`}
                   </TableCell>
                 </TableRow>
               );

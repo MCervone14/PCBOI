@@ -95,7 +95,7 @@ export default function GameInfoCard({ gameData, storeData }: any) {
               <span className="opacity-50 mr-5">
                 Steam Deck Compatibility:{" "}
               </span>
-              {gameData.steam_deck_compatibility || "Not Available"}
+              {gameData?.steam_deck_compatibility || "Not Available"}
             </div>
             {gameData?.gaming_rating && (
               <div className="flex flex-wrap justify-between">
@@ -142,8 +142,8 @@ export default function GameInfoCard({ gameData, storeData }: any) {
                         id={store.storeID}
                         src={`https://cheapshark.com${store.images.logo}`}
                         alt={store.storeName}
-                        width={40}
-                        height={40}
+                        width={50}
+                        height={50}
                         className=""
                       />
                       <Link
@@ -172,8 +172,8 @@ export default function GameInfoCard({ gameData, storeData }: any) {
                         id={store.storeID}
                         src={`https://cheapshark.com${store.images.logo}`}
                         alt={store.storeName}
-                        width={40}
-                        height={40}
+                        width={50}
+                        height={50}
                         className=""
                       />
                       <Link
@@ -186,6 +186,21 @@ export default function GameInfoCard({ gameData, storeData }: any) {
                     </div>
                   );
                 }
+              }
+              if (store.isActive && store.deals.length === 0) {
+                return (
+                  <div key={idx} className="flex items-center gap-10">
+                    <Image
+                      id={store.storeID}
+                      src={`https://cheapshark.com${store.images.logo}`}
+                      alt={store.storeName}
+                      width={50}
+                      height={50}
+                      className=""
+                    />
+                    <p>--</p>
+                  </div>
+                );
               }
             })}
           </CardContent>

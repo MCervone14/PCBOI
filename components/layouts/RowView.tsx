@@ -44,18 +44,14 @@ const RowView = ({ game, released }: any) => {
       <TableCell className="p-0 hover:text-pink-500 pl-3 sm:w-full lg:hidden xl:inline-grid">
         <Link href={`game/${appId}`}>{game.name}</Link>
       </TableCell>
-      {!released && (
-        <TableCell className="p-0 text-center sm:w-full">
-          {releaseDate}
-        </TableCell>
-      )}
+      <TableCell className="p-0 text-center sm:w-full">{releaseDate}</TableCell>
       {released && (
         <TableCell className="p-0 text-center flex items-center justify-center h-full gap-1 sm:w-full">
           {game.total_rating && Number(Math.floor(game.total_rating))}
           {rating}
         </TableCell>
       )}
-      <TableCell className="text-center p-0 opacity-75 sm:w-full">
+      {/* <TableCell className="text-center p-0 opacity-75 sm:w-full">
         <Link
           href={`https://www.cheapshark.com/redirect?dealID=${game.priceData?.cheapestDealID}`}
           prefetch={false}
@@ -64,7 +60,7 @@ const RowView = ({ game, released }: any) => {
         >
           {(game.priceData?.cheapest && `$${game.priceData.cheapest}`) || "--"}
         </Link>
-      </TableCell>
+      </TableCell> */}
     </TableRow>
   );
 };

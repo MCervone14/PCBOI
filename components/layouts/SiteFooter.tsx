@@ -1,4 +1,11 @@
 import Link from "next/link";
+import { Caesar_Dressing } from "next/font/google";
+
+const Caesar = Caesar_Dressing({
+  weight: "400",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 const links = [
   {
@@ -36,7 +43,10 @@ const SiteFooter = () => {
           ))}
         </div>
         <div className="flex justify-center items-center">
-          <Link href="/" className={`text-3xl hover:text-yblue mr-4`}>
+          <Link
+            href="/"
+            className={`text-3xl hover:text-yblue mr-4 ${Caesar.className}`}
+          >
             PCBOI
           </Link>
           <p className="text-sm text-primary opacity-95">© 2023</p>

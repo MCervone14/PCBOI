@@ -4,6 +4,11 @@ import Games from "@/components/Games";
 import { gameCategories } from "@/config/games";
 import { tagNumber } from "@/lib/utils";
 
+export const metadata = {
+  title: "PCBOI  |  All Games",
+  description: "A list of all games in PCBOI's database.",
+};
+
 const fetchGames = async (
   endpoint: string,
   {
