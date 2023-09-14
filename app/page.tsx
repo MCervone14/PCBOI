@@ -38,7 +38,7 @@ const fetchHomepageLists = async (
 
   // Getting the Epic Free Games info
   const EpicData = await EpicFreeGames(
-    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=en-US&country=US&allowCountries=US"
+    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions"
   );
 
   arrOfGames.push(

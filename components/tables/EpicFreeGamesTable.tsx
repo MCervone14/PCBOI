@@ -47,7 +47,11 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
               (image: any) => image.type === "OfferImageWide"
             );
 
-            if (game.promotions && game.offerType === "BASE_GAME") {
+            if (
+              game.promotions &&
+              game.offerType === "BASE_GAME" &&
+              epicData.length <= 4
+            ) {
               return (
                 <TableRow
                   className="flex flex-col border-none"
@@ -69,7 +73,9 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                         blurDataURL={wideImage?.url}
                         priority={false}
                       />
-                      {game.promotions.promotionalOffers.length > 0 ? (
+                      {game.promotions.promotionalOffers.length > 0 &&
+                      game.promotions.promotionalOffers[0].promotionalOffers[0]
+                        .discountSetting.discountPercentage === 0 ? (
                         <span className="h-6 bg-pink-700 rounded-b-md flex items-center justify-center">
                           FREE NOW
                         </span>
@@ -85,7 +91,71 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                     {game.title}
                   </TableCell>
                   <TableCell className="ml-1">
-                    {game.promotions.promotionalOffers.length > 0
+                    {game.promotions.promotionalOffers[0].promotionalOffers[0]
+                      .discountSetting.discountPercentage === 0
+                      ? `Free now -
+                        ${dayjs(
+                          game.promotions.promotionalOffers[0]
+                            ?.promotionalOffers[0]?.endDate
+                        ).format("MMM D")}`
+                      : `Free ${dayjs(
+                          game.promotions.upcomingPromotionalOffers[0]
+                            ?.promotionalOffers[0]?.startDate
+                        ).format("MMM D")} -
+                            ${dayjs(
+                              game.promotions.upcomingPromotionalOffers[0]
+                                ?.promotionalOffers[0]?.endDate
+                            ).format("MMM D")}`}
+                  </TableCell>
+                </TableRow>
+              );
+            } else if (
+              game.promotions &&
+              game.offerType === "BASE_GAME" &&
+              epicData.length > 4
+            ) {
+              return (
+                <TableRow
+                  className="flex flex-col border-none"
+                  key={epicData.id}
+                >
+                  <TableCell>
+                    <Link
+                      href={`https://store.epicgames.com/en-US/p/${game.productSlug}`}
+                      target="_blank"
+                      className="hover:bg-white hover:opacity-90"
+                    >
+                      <Image
+                        src={wideImage?.url}
+                        alt={game.title}
+                        width={350}
+                        height={300}
+                        className="rounded-t-md"
+                        placeholder="blur"
+                        blurDataURL={wideImage?.url}
+                        priority={false}
+                      />
+                      {game.promotions.promotionalOffers.length > 0 &&
+                      game.promotions.promotionalOffers[0].promotionalOffers[0]
+                        .discountSetting.discountPercentage === 0 ? (
+                        <span className="h-6 bg-pink-700 rounded-b-md flex items-center justify-center">
+                          FREE NOW
+                        </span>
+                      ) : (
+                        <span className="h-6 bg-black rounded-b-md flex items-center justify-center">
+                          COMING SOON
+                        </span>
+                      )}
+                    </Link>
+                  </TableCell>
+
+                  <TableCell className="text-lg font-bold line-clamp-1 mt-3 ml-1">
+                    {game.title}
+                  </TableCell>
+                  <TableCell className="ml-1">
+                    {game.promotions.promotionalOffers.length > 0 &&
+                    game.promotions.promotionalOffers[0].promotionalOffers[0]
+                      .discountSetting.discountPercentage === 0
                       ? `Free now -
                         ${dayjs(
                           game.promotions.promotionalOffers[0]
