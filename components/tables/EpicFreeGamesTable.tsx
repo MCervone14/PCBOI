@@ -59,7 +59,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                 >
                   <TableCell>
                     <Link
-                      href={`https://store.epicgames.com/en-US/p/${game.productSlug}`}
+                      href={`https://store.epicgames.com/en-US/p/${game.catalogNs.mappings[0].pageSlug}`}
                       target="_blank"
                       className="hover:bg-white hover:opacity-90"
                     >
@@ -121,7 +121,7 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
                 >
                   <TableCell>
                     <Link
-                      href={`https://store.epicgames.com/en-US/p/${game.productSlug}`}
+                      href={`https://store.epicgames.com/en-US/p/${game.catalogNs.mappings[0].pageSlug}`}
                       target="_blank"
                       className="hover:bg-white hover:opacity-90"
                     >
