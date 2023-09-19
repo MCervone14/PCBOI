@@ -5,7 +5,7 @@ import { category } from "@/types";
 import React from "react";
 
 export const metadata = {
-  title: "PCBOI  |  New Games",
+  title: "New Games | PCBOI",
   description:
     "A list of new games coming soon or released in the last 6 months",
 };

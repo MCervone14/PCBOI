@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: MetaProps) {
 
   const gameData = await fetchGame(id as string);
   return {
-    title: `PCBOI | ${gameData?.title}`,
+    title: `${gameData?.title} | PCBOI `,
     description: gameData?.game_description,
     image: gameData?.header_image,
   };

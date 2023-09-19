@@ -5,7 +5,7 @@ import { gameCategories } from "@/config/games";
 import { tagNumber } from "@/lib/utils";
 
 export const metadata = {
-  title: "PCBOI  |  All Games",
+  title: "All Games | PCBOI",
   description: "A list of all games in PCBOI's database.",
 };
 

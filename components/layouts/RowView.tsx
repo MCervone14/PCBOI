@@ -41,14 +41,14 @@ const RowView = ({ game, released }: any) => {
           />
         </Link>
       </TableCell>
-      <TableCell className="p-0 hover:text-pink-500 pl-3 sm:w-full lg:hidden xl:inline-grid">
+      <TableCell className="p-0 hover:text-pink-500 pl-3 text-lg md:text-md sm:w-full lg:hidden xl:inline-grid py-2">
         <Link href={`game/${appId}`}>{game.name}</Link>
       </TableCell>
       <TableCell className="p-0 text-center sm:w-full">{releaseDate}</TableCell>
       {released && (
-        <TableCell className="p-0 text-center flex items-center justify-center h-full gap-1 sm:w-full">
+        <TableCell className="p-0 text-center flex justify-center h-full gap-1 sm:w-full pt-2">
           {game.total_rating && Number(Math.floor(game.total_rating))}
-          {rating}
+          <span className="w-[30px] h-[30px]">{rating}</span>
         </TableCell>
       )}
       {/* <TableCell className="text-center p-0 opacity-75 sm:w-full">

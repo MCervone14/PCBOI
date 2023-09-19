@@ -6,7 +6,7 @@ import SiteFooter from "@/components/layouts/SiteFooter";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "PCBOI  |  Video Game Info",
+  title: "Video Game Info | PCBOI",
   description: "A site for PC game enthusiasts",
 };
 

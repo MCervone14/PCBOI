@@ -16,7 +16,7 @@ interface CategoriesProps {
 export async function generateMetadata({ searchParams }: CategoriesProps) {
   const categoryName = getCategoryName(+searchParams.id);
   return {
-    title: `PCBOI  |  ${categoryName}`,
+    title: `${categoryName} | PCBOI`,
     description: `Explore Popular ${categoryName} Games`,
   };
 }
