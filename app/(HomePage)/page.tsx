@@ -13,8 +13,6 @@ import { ComingSoon } from "../actions/ComingSoon";
 import { Icons } from "@/components/Icons";
 import { EpicFreeGames } from "../actions/EpicFreeGames";
 import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
-import { Suspense } from "react";
-import LoadingHomePage from "@/components/layouts/LoadingHomePage";
 
 export const metadata = {
   title: "Home | PCBOI",

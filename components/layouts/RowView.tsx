@@ -41,7 +41,7 @@ const RowView = ({ game, released }: any) => {
           />
         </Link>
       </TableCell>
-      <TableCell className="p-0 hover:text-pink-500 pl-3 text-lg md:text-md sm:w-full lg:hidden xl:inline-grid py-2">
+      <TableCell className="p-0 hover:text-pink-500 pl-3 text-md sm:w-full lg:hidden xl:inline-grid py-2">
         <Link href={`game/${appId}`}>{game.name}</Link>
       </TableCell>
       <TableCell className="p-0 text-center sm:w-full">{releaseDate}</TableCell>
@@ -51,7 +51,7 @@ const RowView = ({ game, released }: any) => {
           <span className="w-[30px] h-[30px]">{rating}</span>
         </TableCell>
       )}
-      {/* <TableCell className="text-center p-0 opacity-75 sm:w-full">
+      {/*<TableCell className="text-center p-0 opacity-75 sm:w-full">   // Not sure if I want to use this price cell for the homepage.
         <Link
           href={`https://www.cheapshark.com/redirect?dealID=${game.priceData?.cheapestDealID}`}
           prefetch={false}

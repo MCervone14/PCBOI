@@ -50,7 +50,8 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
             if (
               game.promotions &&
               game.offerType === "BASE_GAME" &&
-              epicData.length <= 4
+              game.title !== "911 Operator" &&
+              epicData.length <= 7
             ) {
               return (
                 <TableRow
@@ -112,7 +113,8 @@ const EpicFreeGamesTable = ({ title, epicData }: any) => {
             } else if (
               game.promotions &&
               game.offerType === "BASE_GAME" &&
-              epicData.length > 4
+              game.title !== "911 Operator" &&
+              epicData.length > 7
             ) {
               return (
                 <TableRow

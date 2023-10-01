@@ -53,7 +53,7 @@ function MobileLink({
   );
 }
 
-const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
+const MobileNav = ({ mainNavItems }: MobileNavProps) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
