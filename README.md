@@ -40,4 +40,4 @@ I have a passion for games and wanted to make a website that users could find to
 ## Contact
 
 - [Github](https://github.com/MCervone14)
-- [My Portfolio](https://mcervone14.github.io/portfolio/)
+- [My Portfolio](https://github.com/MCervone14/Portfolio-Website)
