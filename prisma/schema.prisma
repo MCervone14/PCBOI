@@ -14,7 +14,7 @@ datasource db {
 model Game {
   id                        String     @id @default(cuid()) @map("_id")
   appid                     String     @unique
-  title                     String     @unique
+  title                     String
   background_image          String?
   header_image              String?
   game_description          String?
@@ -36,6 +36,8 @@ model Game {
   reviews                   Review[]
   createdAt                 DateTime?  @default(now())
   updatedAt                 DateTime?  @updatedAt
+
+  @@fulltext([title])
 }
 
 type Review {

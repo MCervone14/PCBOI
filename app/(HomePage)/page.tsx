@@ -11,7 +11,6 @@ import { AwesomeIndieGames } from "../actions/AwesomeIndieGames";
 import { EndlessHours } from "../actions/EndlessHours";
 import { ComingSoon } from "../actions/ComingSoon";
 import { Icons } from "@/components/Icons";
-import { EpicFreeGames } from "../actions/EpicFreeGames";
 import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
 
 export const metadata = {
@@ -34,11 +33,6 @@ const fetchHomepageLists = async (
   const Endless_Hours = await EndlessHours(url);
   const Coming_Soon = await ComingSoon(url);
 
-  // Getting the Epic Free Games info
-  const EpicData = await EpicFreeGames(
-    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions"
-  );
-
   arrOfGames.push(
     Popular_New_Releases,
     Epic_Releases_of_2023,
@@ -55,7 +49,6 @@ const fetchHomepageLists = async (
     Awesome_Indie_Games,
     Endless_Hours,
     Coming_Soon,
-    EpicData,
   };
 };
 
@@ -67,7 +60,6 @@ export default async function Home() {
     Endless_Hours,
     Epic_Releases_of_2023,
     Hidden_Gems,
-    EpicData,
   } = await fetchHomepageLists("games", {
     offset: 0,
   });
@@ -166,10 +158,7 @@ export default async function Home() {
           </div>
         </div>
         <div>
-          <EpicFreeGamesTable
-            epicData={EpicData.data.Catalog.searchStore.elements}
-            title="Epic's Free Games"
-          />
+          <EpicFreeGamesTable title="Epic's Free Games" />
         </div>
         <div className="flex flex-col items-center mx-auto w-full mb-8">
           <div className="bg-black/80 w-full rounded-lg shadow-2xl border border-primary">
