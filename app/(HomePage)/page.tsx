@@ -12,6 +12,7 @@ import { EndlessHours } from "../actions/EndlessHours";
 import { ComingSoon } from "../actions/ComingSoon";
 import { Icons } from "@/components/Icons";
 import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Home | PCBOI",
@@ -104,22 +105,23 @@ export default async function Home() {
           <div className="lg:w-3/4 relative">
             <AspectRatio ratio={19.5 / 9}>
               <Image
-                src="starfield.jpg"
-                alt="Photo"
+                src="/Avatar_Frontiers_of_Pandora.jpg"
+                alt="Avatar Frontiers of Pandora by RealPitchers on alphacoders.com"
                 fill
-                className=" rounded-b-none rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none object-cover mx-auto z-[0]"
+                className=" rounded-b-none rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none object-cover  mx-auto z-[0]"
                 placeholder="blur"
-                blurDataURL="starfield.jpg"
+                blurDataURL="/Avatar_Frontiers_of_Pandora.jpg"
+                priority
               />
             </AspectRatio>
-            <Button
+            {/* <Button
               variant="link"
               className="absolute bottom-4 right-4 text-xs opacity-95"
             >
-              <Link href={`/game/1716740`} className="text-primary">
-                Starfield (2023)
+              <Link href={`/game/12072023`} className="text-primary ">
+                Avatar: Frontiers of Pandora (2023)
               </Link>
-            </Button>
+            </Button> */}
           </div>
           <div className="lg:w-1/4 p-4 bg-gradient-to-b from-pink-600 to-slate-900 flex flex-col justify-around rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none">
             <div>
@@ -163,14 +165,16 @@ export default async function Home() {
         <div className="flex flex-col items-center mx-auto w-full mb-8">
           <div className="bg-black/80 w-full rounded-lg shadow-2xl border border-primary">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-2 p-5">
-              {tableCategories.map((category, idx) => (
-                <TableView
-                  key={idx}
-                  title={category.title}
-                  category={category.category}
-                  released={category.released}
-                />
-              ))}
+              <Suspense fallback={<div>Loading...</div>}>
+                {tableCategories.map((category, idx) => (
+                  <TableView
+                    key={idx}
+                    title={category.title}
+                    category={category.category}
+                    released={category.released}
+                  />
+                ))}
+              </Suspense>
             </div>
           </div>
         </div>

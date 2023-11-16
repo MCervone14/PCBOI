@@ -59,6 +59,7 @@
     "react-hook-form": "^7.45.0",
     "react-icons": "^4.9.0",
     "react-wrap-balancer": "^1.0.0",
+    "recharts": "^2.9.3",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-pretty-code": "^0.9.6",
     "rehype-slug": "^5.1.0",

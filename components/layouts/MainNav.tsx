@@ -30,7 +30,7 @@ const MainNav = ({ items }: MainNavProps) => {
       <Link
         aria-label="Home"
         href={"/"}
-        className={`hidden lg:flex hover:text-yblue text-3xl ${Caesar.className}`}
+        className={`hidden relative lg:flex hover:text-pink-500 text-3xl ${Caesar.className}`}
       >
         PCBOI
       </Link>
@@ -38,7 +38,7 @@ const MainNav = ({ items }: MainNavProps) => {
         <NavigationMenuList>
           {items?.[0]?.items ? (
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="h-auto">
+              <NavigationMenuTrigger className="h-auto bg-slate-950">
                 {items[0].title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -62,7 +62,7 @@ const MainNav = ({ items }: MainNavProps) => {
             .map((item, idx) =>
               item?.items ? (
                 <NavigationMenuItem key={idx}>
-                  <NavigationMenuTrigger className="h-auto capitalize text-white">
+                  <NavigationMenuTrigger className="h-auto capitalize text-white bg-slate-950">
                     {item.title}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -72,7 +72,7 @@ const MainNav = ({ items }: MainNavProps) => {
                           key={idx}
                           title={item.title}
                           href={item.href}
-                          className="text-primary"
+                          className="text-primary "
                         >
                           {item.description}
                         </ListItem>

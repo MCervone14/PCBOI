@@ -53,8 +53,8 @@ const userLogoutLabel = [
 
 const SiteNav = () => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-primary bg-background">
-      <div className="container flex h-16 items-center">
+    <header className="sticky top-0 h-20 z-40 w-full border-b border-primary bg-slate-950">
+      <div className="container h-full flex items-center justify-center">
         <MainNav items={mainConfig.mainNav} />
         <MobileNav
           mainNavItems={mainConfig.mainNav}

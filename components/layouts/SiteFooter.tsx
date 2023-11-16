@@ -9,17 +9,17 @@ const Caesar = Caesar_Dressing({
 
 const links = [
   {
-    title: "CheapShark Pricing Api",
+    title: "CheapShark",
     href: "https://apidocs.cheapshark.com/",
     ariaLabel: "CheapShark",
   },
   {
-    title: "IGDB Api",
+    title: "IGDB",
     href: "https://api-docs.igdb.com/#getting-started",
     ariaLabel: "IGDB Api",
   },
   {
-    title: "Steam Api",
+    title: "Steam",
     href: "https://steamcommunity.com/dev",
     ariaLabel: "Steam Api",
   },
@@ -36,7 +36,7 @@ const SiteFooter = () => {
               key={idx}
               href={link.href}
               aria-label={link.ariaLabel}
-              className="pr-5 hover:underline"
+              className="pr-5 hover:underline text-pink-400 text-lg"
             >
               {link.title}
             </Link>
@@ -45,7 +45,7 @@ const SiteFooter = () => {
         <div className="flex justify-center items-center">
           <Link
             href="/"
-            className={`text-3xl hover:text-yblue mr-4 ${Caesar.className}`}
+            className={`text-3xl hover:text-pink-500 mr-4 ${Caesar.className}`}
           >
             PCBOI
           </Link>

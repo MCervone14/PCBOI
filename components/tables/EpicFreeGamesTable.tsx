@@ -17,33 +17,33 @@ interface EpicFreeGamesTableProps {
 const epicData = [
   {
     id: 1,
-    title: "Golden Light",
-    href: "https://www.epicgames.com/store/en-US/p/golden-light-f543b3",
-    image:
-      "https://cdn1.epicgames.com/spt-assets/d3aec59bfafa4dd392d5c9b01abbaefd/golden-light-n6ioy.jpg?h=480&quality=medium&resize=1&w=854",
-    isFree: true,
-    startDate: "2023-11-09T16:00:00.000Z",
-    endDate: "2023-11-16T16:00:00.000Z",
-  },
-  {
-    id: 2,
     title: "EarthLock",
     href: "https://store.epicgames.com/en-US/p/earthlock-e7d979",
     image:
       "https://cdn1.epicgames.com/spt-assets/3fa7dc9ed5df483cb4cba9a1e7d7497c/earthlock-15ff1.png?h=480&quality=medium&resize=1&w=854",
-    isFree: false,
+    isFree: true,
+    startDate: "2023-11-16T16:00:00.000Z",
+    endDate: "2023-11-23T16:00:00.000Z",
+  },
+  {
+    id: 2,
+    title: "Surviving the Aftermath",
+    href: "https://www.epicgames.com/store/en-US/p/surviving-the-aftermath",
+    image:
+      "https://cdn1.epicgames.com/offer/95b4d5a753d042678f775d5e1eb5ab25/EGS_SurvivingtheAftermath_IceflakeStudiosOy_S1_2560x1440-61c69731778b92a32a9dbfd7c1a35d72?h=480&quality=medium&resize=1&w=854",
+    isFree: true,
     startDate: "2023-11-16T16:00:00.000Z",
     endDate: "2023-11-23T16:00:00.000Z",
   },
   {
     id: 3,
-    title: "Surviving the Aftermath",
-    href: "https://www.epicgames.com/store/en-US/p/surviving-the-aftermath",
+    title: "Deliver Us Mars",
+    href: "https://store.epicgames.com/en-US/p/deliver-us-mars",
     image:
-      "https://cdn1.epicgames.com/offer/95b4d5a753d042678f775d5e1eb5ab25/EGS_SurvivingtheAftermath_IceflakeStudiosOy_S1_2560x1440-61c69731778b92a32a9dbfd7c1a35d72?h=480&quality=medium&resize=1&w=854",
+      "https://cdn1.epicgames.com/offer/53ec6d9f552241549c4d8aa1a42bcb3b/EGS_DeliverUsMars_KeokeNInteractive_S1_2560x1440-b5b36e7ef7feabf180837cc9d15efdae?h=480&quality=medium&resize=1&w=854",
     isFree: false,
-    startDate: "2023-11-16T16:00:00.000Z",
-    endDate: "2023-11-23T16:00:00.000Z",
+    startDate: "2023-11-23T16:00:00.000Z",
+    endDate: "2023-11-30T16:00:00.000Z",
   },
 ];
 
@@ -75,6 +75,7 @@ const EpicFreeGamesTable = ({ title }: EpicFreeGamesTableProps) => {
                     className="rounded-t-md"
                     placeholder="blur"
                     blurDataURL={game.image}
+                    priority
                   />
                   {game.isFree ? (
                     <span className="h-6 bg-pink-700 rounded-b-md flex items-center justify-center">

@@ -11,7 +11,6 @@ export const filterGamesBySearch = async (query: string) => {
         mode: "insensitive",
       },
     },
-
     select: {
       title: true,
       header_image: true,

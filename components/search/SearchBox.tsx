@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useTransition, useRef } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useDebounce } from "@/hooks/useDebounce";
 import { Skeleton } from "../ui/skeleton";
@@ -71,6 +71,7 @@ const SearchBox = () => {
           }
         }}
         type="search"
+        aria-label="Search game titles"
       />
       <div
         className="absolute flex items-center right-0 mt-1 w-[300px] md:w-[500px] p-2 bg-secondary text-white shadow-lg"
