@@ -12,38 +12,39 @@ import Link from "next/link";
 
 interface EpicFreeGamesTableProps {
   title: string;
+  data: any;
 }
 
 const epicData = [
   {
     id: 1,
-    title: "EarthLock",
-    href: "https://store.epicgames.com/en-US/p/earthlock-e7d979",
+    title: "Gigantic: Rampage Edition",
+    href: "https://store.epicgames.com/en-US/p/gigantic-rampage-edition-03f532",
     image:
-      "https://cdn1.epicgames.com/spt-assets/3fa7dc9ed5df483cb4cba9a1e7d7497c/earthlock-15ff1.png?h=480&quality=medium&resize=1&w=854",
+      "https://cdn1.epicgames.com/spt-assets/6630e3dcc72a4e2285e91ca48aa0eb4b/gigantic-rampage-edition-pjf64.jpg?h=480&quality=medium&resize=1&w=854",
     isFree: true,
-    startDate: "2023-11-16T16:00:00.000Z",
-    endDate: "2023-11-23T16:00:00.000Z",
+    startDate: "2024-08-22T16:00:00.000Z",
+    endDate: "2024-08-29T16:00:00.000Z",
   },
   {
     id: 2,
-    title: "Surviving the Aftermath",
-    href: "https://www.epicgames.com/store/en-US/p/surviving-the-aftermath",
+    title: "The Callisto Protocol",
+    href: "https://www.epicgames.com/store/en-US/p/the-callisto-protocol",
     image:
-      "https://cdn1.epicgames.com/offer/95b4d5a753d042678f775d5e1eb5ab25/EGS_SurvivingtheAftermath_IceflakeStudiosOy_S1_2560x1440-61c69731778b92a32a9dbfd7c1a35d72?h=480&quality=medium&resize=1&w=854",
+      "https://cdn1.epicgames.com/offer/6b0541b5d9aa476cbf407643ab3b1d7d/EGS_TheCallistoProtocol_StrikingDistanceStudios_S2_1200x1600-1e31eacc92833279f5b7a8d07cd3826c?h=480&quality=medium&resize=1&w=854",
     isFree: true,
-    startDate: "2023-11-16T16:00:00.000Z",
-    endDate: "2023-11-23T16:00:00.000Z",
+    startDate: "2024-08-22T16:00:00.000Z",
+    endDate: "2024-08-29T16:00:00.000Z",
   },
   {
     id: 3,
-    title: "Deliver Us Mars",
-    href: "https://store.epicgames.com/en-US/p/deliver-us-mars",
+    title: "Fallout® Classic Collection",
+    href: "https://store.epicgames.com/en-US/bundles/fallout-classic-collection",
     image:
-      "https://cdn1.epicgames.com/offer/53ec6d9f552241549c4d8aa1a42bcb3b/EGS_DeliverUsMars_KeokeNInteractive_S1_2560x1440-b5b36e7ef7feabf180837cc9d15efdae?h=480&quality=medium&resize=1&w=854",
+      "https://cdn1.epicgames.com/offer/08f9ecb2186a454cacee6b05d06098ec/EGS_FalloutClassicCollection_BethesdaGameStudios_S2_1200x1600-4b3ea48c3b7de78a18277ce0c7d2ef9f?h=480&quality=medium&resize=1&w=854",
     isFree: false,
-    startDate: "2023-11-23T16:00:00.000Z",
-    endDate: "2023-11-30T16:00:00.000Z",
+    startDate: "2024-08-29T16:00:00.000Z",
+    endDate: "2024-09-05T16:00:00.000Z",
   },
 ];
 

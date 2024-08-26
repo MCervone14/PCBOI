@@ -115,12 +115,6 @@ const GamePage = async ({ params }: any) => {
           />
           <div className="flex flex-col justify-center items-center mb-5">
             <GameInfoCard gameData={gameData} storeData={storeData} />
-            {gameData.movies.length >= 1 && (
-              <MediaWrapper movies={gameData?.movies} />
-            )}
-            {gameData.screenshots.length >= 1 && (
-              <ScreenShotWrapper screenshots={gameData?.screenshots} />
-            )}
             <LanguagesChartCard languages={gameData.languages} />
           </div>
         </div>

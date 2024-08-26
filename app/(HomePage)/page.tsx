@@ -13,6 +13,7 @@ import { ComingSoon } from "../actions/ComingSoon";
 import { Icons } from "@/components/Icons";
 import EpicFreeGamesTable from "@/components/tables/EpicFreeGamesTable";
 import { Suspense } from "react";
+import { EpicFreeGames } from "../actions/EpicFreeGames";
 
 export const metadata = {
   title: "Home | PCBOI",
@@ -53,6 +54,11 @@ const fetchHomepageLists = async (
   };
 };
 
+const fetchEpicFreeGames = async (endpoint: string) => {
+  const games = await EpicFreeGames(endpoint);
+  return games;
+};
+
 export default async function Home() {
   const {
     Popular_New_Releases,
@@ -64,6 +70,10 @@ export default async function Home() {
   } = await fetchHomepageLists("games", {
     offset: 0,
   });
+  const epicData = await fetchEpicFreeGames(
+    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions"
+  );
+  const epicFreeGames = epicData.data.Catalog.searchStore.elements;
 
   const tableCategories = [
     {
@@ -160,7 +170,7 @@ export default async function Home() {
           </div>
         </div>
         <div>
-          <EpicFreeGamesTable title="Epic's Free Games" />
+          <EpicFreeGamesTable title="Epic's Free Games" data={epicFreeGames} />
         </div>
         <div className="flex flex-col items-center mx-auto w-full mb-8">
           <div className="bg-black/80 w-full rounded-lg shadow-2xl border border-primary">
